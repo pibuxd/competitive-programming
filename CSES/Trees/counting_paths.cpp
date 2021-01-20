@@ -4,6 +4,7 @@ using namespace std;
 const int MXN = 2e5;
 vector<vector<int>> G(MXN+1);
 vector<int> cont(MXN+1);
+vector<vector
 int n, m;
 
 void readG(){

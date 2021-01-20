@@ -3,7 +3,9 @@ using namespace std;
  
 const int MXN = 2e5;
 vector<vector<int>> G(MXN+1);
-int n, maximum = 0;
+int n, maximum;
+int dist[MXN+1];
+
 
 void readG(){
    for(int i = 1, a, b; i < n; i++){
@@ -12,58 +14,34 @@ void readG(){
       G[b].push_back(a);
    }
 }
- 
-void BFS(int start){
-   int last = start;
-   vector<int> di(MXN+1);
+
+void bfs(int x){
    queue<int> Q;
-   Q.push(start);
- 
+   vector<bool> visited(MXN+1);
+   visited[x] = true;
+   Q.push(x);
+   dist[x] = 0;
+   int v;
+
    while(!Q.empty()){
-      int n = Q.front();
+      v = Q.front();
       Q.pop();
-      last = n;
 
-      for(int x : G[n]){
-         Q.push(x);
-         di[x] = di[n] + 1;
+      for(int u : G[v]){
+         if(!visited[u]){
+            Q.push(u);
+            visited[u] = true;
+            dist[u] = dist[v] + 1;
+            maximum = u;
+         }
       }
    }
+}
 
-   if(di[last] > maximum){
-      maximum = di[last];
-   }   
-}
- 
-void CreateStartPoints(vector<int> &starts){
-   vector<bool> notLast(n+1);
- 
-   for(int i = 1; i <= n; i++){
-      for(int x : G[i]){
-         notLast[x] = true;
-      }
-   }
- 
-   for(int x = 1; x <= n; x++){
-      if(!notLast[x]){
-         starts.push_back(x);
-      }
-   }
-}
- 
-void PrintSubordinates(){
-   vector<int> starts;
-   CreateStartPoints(starts);
- 
-   for(int x : starts){
-      BFS(x);
-   }
-}
- 
-int main(){
+int main(){ ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
    cin >> n;
- 
    readG();
-   PrintSubordinates();
-   cout << maximum;
-}
+   bfs(1);
+   bfs(maximum);
+   cout << dist[maximum];
+} 
