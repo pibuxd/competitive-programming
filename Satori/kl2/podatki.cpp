@@ -22,11 +22,6 @@ void update(int a, int b, int val){
 
 void constructFenwickTree(){
   V = vector<ll>(n+1);
-
-  for(int i = 1, p, y = 0; i <= n; i++, y = p){
-    cin >> p;
-    updateVal(i, p - y);
-  }
 }
 
 ll getElement(int x){
