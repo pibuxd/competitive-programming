@@ -1,80 +1,101 @@
-/**
- * lazy propagation segment tree
- * * range subtract, range minimum
- */
-
 #include <bits/stdc++.h>
 using namespace std;
-#define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
- 
-int n, m, q;
-vector<int> tree, lazy;
- 
-void push(int v){
-  tree[2*v] += lazy[v];
-  lazy[2*v] += lazy[v];
-  tree[2*v+1] += lazy[v];
-  lazy[2*v+1] += lazy[v];
-  lazy[v] = 0;
-}
- 
-void update(int v, int tl, int tr, int l, int r, int addend){
-  if(l > r){
-    return;
-  }
-  if(l == tl && r == tr){
-    tree[v] += addend;
-    lazy[v] += addend;
-  } else{
-    push(v);
 
-    int tm = (tl + tr) / 2;
-    update(v*2, tl, tm, l, min(r, tm), addend);
-    update(v*2+1, tm+1, tr, max(l, tm+1), r, addend);
-    tree[v] = min(tree[2*v], tree[2*v+1]);
+#define fi first
+#define se second
+
+using ll=long long;
+using pll=pair<ll, ll>;
+ 
+struct node {
+  ll sum=0, incr=0, all=0;
+};
+ 
+const int mxN=2e5+1;
+int n, q;
+ll a[mxN];
+node seg[mxN*4];
+ 
+void build(int v=1, int l=0, int r=n-1) {
+  if (l==r) {
+      seg[v].sum=a[l];
+      return;
   }
+  int mid=(l+r)/2;
+  build(v*2, l, mid);
+  build(v*2+1, mid+1, r);
+  seg[v].sum=max(seg[v*2].sum,seg[v*2+1].sum);
 }
  
-int query(int v, int tl, int tr, int l, int r){
-  if(l > r){
-    return INT_MAX;
+void push(int v, int l, int r) {
+  if (seg[v].all)
+      seg[v].sum=(r-l+1)*seg[v].all;
+  seg[v].sum+=(r-l+1)*seg[v].incr;
+
+  if (l!=r) {
+      if (seg[v].all) {
+          seg[v*2].incr=seg[v*2+1].incr=seg[v].incr;
+          seg[v*2].all=seg[v*2+1].all=seg[v].all;
+      }
+      else {
+          seg[v*2].incr+=seg[v].incr;
+          seg[v*2+1].incr+=seg[v].incr;
+      }
   }
-  if(l <= tl && tr <= r){
-    return tree[v];
-  }
+  seg[v].incr=seg[v].all=0;
+}
  
-  push(v);
-  int tm = (tr + tl) / 2;
-  return min(query(v*2, tl, tm, l, min(r, tm)), 
-            query(v*2+1, tm+1, tr, max(l, tm+1), r));
+void upd(int l, int r, ll x, int lo=0, int hi=n-1, int v=1) {
+  if (l>hi || r<lo || l>=n)
+      return;
+  if (lo>=l && hi<=r) {
+      if (x>0)
+          seg[v].incr+=x;
+      else
+          seg[v].all=-x, seg[v].incr=0;
+      return;
+  }
+
+  push(v, lo, hi);
+  int mid=(lo+hi)/2;
+
+  upd(l, r, x, lo, mid, v*2);
+  upd(l, r, x, mid+1, hi, v*2+1);
+
+  push(v*2, lo, mid);
+  push(v*2+1, mid+1, hi);
+  seg[v].sum=max(seg[v*2].sum,seg[v*2+1].sum);
+}
+ 
+ll query(int l, int r, int lo=0, int hi=n-1, int v=1) {
+  if (l>hi || r<lo || l>=n)
+      return 0;
+  push(v, lo, hi);
+  if (lo>=l && hi<=r)
+      return seg[v].sum;
+  int mid=(lo+hi)/2;
+  return max(query(l, r, lo, mid, v*2),query(l, r, mid+1, hi, v*2+1));
 }
  
 int main(){
-  fastio;
-  int t;
-  cin >> t;
- 
-  while(t--){
-    cin >> n >> m >> q;
-    tree = lazy = vector<int>(10*n+1);
-    update(1, 1, n, 1, n, m);
- 
-    while(q--){
-      int tempa, tempb, val;
-      cin >> tempa >> tempb >> val;
+  cin >> n >> q;
 
-      tempb--; // ?
-      int a = min(tempa, tempb);
-      int b = max(tempa, tempb);
-      int minimum = query(1, 1, n, a, b);
-      // cout << minimum << ' '; debug
+  for(int i = 0; i < n; i++)
+    a[i] = 0;
 
-      if(val <= minimum){
-        cout << "T\n";
-        update(1, 1, n, a, b, -val);
-      } else{
-        cout << "N\n";
-      }
-    }
+  build();
+
+  while(q--){
+    int a, b;
+    cin >> a >> b;
+    b--;
+
+    int t = 2;
+    int x = query(a, a+b);
+    cout << x << endl;
+    //cout << x;
+    upd(a, b, (t==1?1:-1)*(x+1));   
   }
+  
+  cout << query(1, n);
 }

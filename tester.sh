@@ -42,7 +42,7 @@ fi
 
 # compile generator with CP flags
 START=$(date +%s.%N)
-g++ -O2 -std=c++17 -static -Wall -Werror -Wextra -o generator generator.cpp ||
+g++ -o generator generator.cpp ||
 { echo "generator.cpp -> ${bold}${red}compilation error${reset}"; exit 1; }
 DIFF=$(echo "$(date +%s.%N) - $START" | bc)
 printf "generator.cpp -> ${bold}${green}compiled${reset} in %.6f sec \n" $DIFF 
@@ -60,13 +60,13 @@ if [[ "$1" = "test" ]]; then
 
   # compile brute and pattern with CP flags
   START=$(date +%s.%N)
-  g++ -static -std=c++17 -Wall -Werror -Wextra -O2 -o brute brute.cpp ||
+  g++ -o brute brute.cpp ||
   { echo "brute.cpp -> ${bold}${red}compilation error${reset}"; exit 1; }
   DIFF=$(echo "$(date +%s.%N) - $START" | bc)
   printf "brute.cpp -> ${bold}${green}compiled${reset} in %.6f sec \n" $DIFF
 
   START=$(date +%s.%N)
-  g++ -static -std=c++17 -Wall -Werror -Wextra -O2 -o pattern pattern.cpp || 
+  g++ -o pattern pattern.cpp || 
   { echo "pattern.cpp -> ${bold}${red}compilation error${reset}"; exit 1; }
   DIFF=$(echo "$(date +%s.%N) - $START" | bc)
   printf "pattern.cpp -> ${bold}${green}compiled${reset} in %.6f sec \n" $DIFF
