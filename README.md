@@ -27,7 +27,7 @@ stuff from my high school, mostly "Szkopul"
 
 ## Testing
 
-+ pattern.cpp - the solution that is checked if it is correct
-+ generator.cpp - creates random input for task
-+ brute.cpp - the brute solution which checks if the pattern is correct
-+ tester.sh - a bash script that manages the pattern testing process
++ ***pattern.cpp*** - the solution that is checked if it is correct
++ ***generator.cpp*** - creates random input for task
++ ***brute.cpp*** - the brute solution which checks if the pattern is correct
++ ***tester.sh*** - a bash script that manages the pattern testing process

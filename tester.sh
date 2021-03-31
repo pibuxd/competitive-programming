@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # tester for competetive programming (CP)
 
 # color variables
