@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # tester for competetive programming (CP)
 
 # color variables
@@ -84,9 +84,10 @@ if [[ "$1" = "test" ]]; then
     ./brute < input.in > brute.out
     START=$(date +%s.%N)
     ./pattern < input.in > pattern.out
+    END=$(date +%s.%N)
     DIFF=$(echo "$(date +%s.%N) - $START" | bc)
 
-    if [[ $DIFF > $MAX_TIME ]]; then
+    if (( $( echo "$DIFF > $MAX_TIME" | bc) )); then
       MAX_TIME=$DIFF
       MAX_TEST=$i
     fi
@@ -100,7 +101,6 @@ if [[ "$1" = "test" ]]; then
     fi
 
   done
-
   printf "\nMax time on test: ${magenta}$MAX_TEST${reset} in %.6f sec \n" $MAX_TIME
 
 elif [[ "$1" = "gen" ]]; then

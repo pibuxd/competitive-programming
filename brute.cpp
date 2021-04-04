@@ -2,42 +2,42 @@
 using namespace std;
 #define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
 
-int n, q;
-vector<int> T;
+int shortest_period(string &s){
+  int n = s.size();
 
-void update(int a, int b, int val){
-  for(;a <= b; a++){
-    T[a] = val;
-  }
-}
+  string pattern = "";
+  bool check = true;
 
-int query(int a, int b){
-  int maximum = -1;
+  for(int i = 0; i <= (n+1)/2; i++, check = true, pattern = ""){
+    for(int it = 0; it <= i; it++){
+      pattern += s[it];
+    }
+    //cout << pattern << " ";
 
-  for(;a <= b; a++){
-    if(T[a] > maximum){
-      maximum = T[a];
+    for(int it = 0; it < n; it++){
+      if(pattern[it%(i+1)] != s[it]){
+        //cout << it%(i+1) << "," << it << " ";
+        check = false;
+      }
+    }
+
+    if(check){ // ok
+      return n/(i+1);
     }
   }
 
-  return maximum;
+  return 1;
 }
 
 int main(){
   fastio;
 
-  cin >> n >> q;
-  T = vector<int>(n+1);
-
-  while(q--){
-    int a, b;
-    cin >> b >> a;
-    b--;
-
-    int maximum = query(a, a+b);
-    cout << maximum << endl;
-    update(a, a+b, maximum+1);
+  int t;
+  cin >> t;
+  
+  while(t--){
+    string s;
+    cin >> s;
+    cout << shortest_period(s) << "\n";
   }
-
-  cout << query(1, n);
 }

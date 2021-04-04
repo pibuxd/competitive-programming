@@ -19,17 +19,21 @@ vector<int> kmp(string &s){ // ok
   return pi;
 }
 
-bool period(int period_len, string &s){
-  int n = s.size();
+bool period(int period_len, int end, vector<int> &pi){
+  //int i = end + 1 - period_len;
 
-  for(int i = period_len; i < n; i++){
-    if(s[i] != s[(i)%period_len]){
+  for(int x = end+1, i = end + 1 - period_len, it = pi[x]; x <= period_len+end; x++, it++){
+    if(x-period_len+1 != it){
       //cout << "XD ";
       return false;
     }
   }
 
-  return true;
+  if(end + period_len == pi.size() - 1){
+    return true;
+  } else{
+    return period(period_len, period_len + end, pi);
+  }
 }
 
 int shortest_period(string &s){
@@ -48,8 +52,6 @@ int shortest_period(string &s){
 
   // search for a period
   for(int i = 0; i < n; i++){
-    if(odnies[i] == 0) return 1;
-
     if(pi[i] == 0){
       period_len++;
       repeat[(int)s[i]-96] += odnies[i] - 1;
@@ -65,8 +67,7 @@ int shortest_period(string &s){
   }
 
   // DEBUG
-  /*
-  for(char x : s){
+  /*for(char x : s){
     cout << x << ' ';
   } cout << "\n";
   for(int x : pi){
@@ -77,7 +78,7 @@ int shortest_period(string &s){
   } cout << "\n";
   cout << period_len << "\n";
   */
-  if(period(period_len, s)){
+  if(period(period_len, period_len-1, pi)){
     return n/period_len;
   } else{
     return 1;
