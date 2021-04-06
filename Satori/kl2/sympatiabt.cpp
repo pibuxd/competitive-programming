@@ -8,13 +8,13 @@ using namespace std;
 struct Graph {
   vector<vector<int>> G;
   vector<int> it;
-  vector<pair<int, int>> eulerian_path, Tree;
+  vector<pair<int, int>> eulerian_path, tree;
   int n, e_size = 0;
 
   Graph(int _n){
     n = _n;
     G.resize(n);
-    Tree.resize(10000001);
+    tree.resize(10000001);
   }
 
   void push(int a, int b){
@@ -38,20 +38,20 @@ struct Graph {
     }
   }
 
-  void buildTree(int v, int l, int r){
+  void buildtree(int v, int l, int r){
     if(l == r){
-      Tree[v] = eulerian_path[l];
+      tree[v] = eulerian_path[l];
       return;
     } 
 
     int mid = (l + r) / 2;
-    buildTree(2*v, l, mid);
-    buildTree(2*v+1, mid+1, r);
+    buildtree(2*v, l, mid);
+    buildtree(2*v+1, mid+1, r);
 
-    if(Tree[2*v].second < Tree[2*v+1].second){
-      Tree[v] = Tree[2*v];
+    if(tree[2*v].second < tree[2*v+1].second){
+      tree[v] = tree[2*v];
     } else{
-      Tree[v] = Tree[2*v+1];
+      tree[v] = tree[2*v+1];
     }
   }
 
@@ -60,7 +60,7 @@ struct Graph {
 
     dfs(0);
 
-    buildTree(1, 0, eulerian_path.size()-1);
+    buildtree(1, 0, eulerian_path.size()-1);
   }
 
   pair<int, int> query(int v, int l, int r, int x, int y){
@@ -68,7 +68,7 @@ struct Graph {
       return {INT_MAX, INT_MAX};
     }
     if(x <= l && y >= r){
-      return Tree[v];
+      return tree[v];
     }
 
     pair<int, int> q1, q2;
@@ -80,7 +80,7 @@ struct Graph {
       return q1;
     } else{
       return q2;
-    };
+    }
   }
 
   int lca(int a, int b){
@@ -134,7 +134,7 @@ int main(){
       cout << x << ' ';
     } cout << '\n' << '\n';
 
-    for(auto x : graph.Tree){
+    for(auto x : graph.tree){
       cout << x.first << ',' << x.second << ' ';
     }*/
   }

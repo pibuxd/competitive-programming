@@ -1,12 +1,13 @@
+// * find bridges using function LOW and calculate result
 #include <bits/stdc++.h>
 using namespace std;
 #define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
 
 struct Graph {
+  int n, pre_num;
   vector<vector<int>> G;
   vector<bool> visited;
-  vector<int> low, pre, post, articulations; 
-  int n, pre_num, post_num;
+  vector<int> low, pre, num_of_bridges;
 
   Graph(int _n){
     n = _n;
@@ -18,14 +19,13 @@ struct Graph {
     G[b].push_back(a);
   }
 
-  void is_articulation(int v){
-    articulations.push_back(v);
+  void bridge(int a, int b){
+    num_of_bridges[a]++,num_of_bridges[b]++;
   }
 
   void dfs(int v, int parent = -1){
     visited[v] = true;
     pre[v] = low[v] = pre_num++;
-    int num_of_children = 0;
 
     for(int x : G[v]){
       if(x == parent) continue;
@@ -36,35 +36,41 @@ struct Graph {
         dfs(x, v);
         low[v] = min(low[v], low[x]);
 
-        if(low[x] >= pre[v] && parent != -1){
-          is_articulation(v);
-        }
-
-        num_of_children++;
+        if(low[x] > pre[v])
+          bridge(v, x);
       }
     }
-
-    if(parent == -1 && num_of_children > 1 && v != t){
-      is_articulation(v);
-    }
-    
-    post[v] = post_num++;
   }
 
-  void find_articulations(){
+  void find_bridges(){
     visited.resize(n+1);
     pre.resize(n+1);
-    post.resize(n+1);
     low.resize(n+1);
-    articulations.resize(n+1);
+    num_of_bridges.resize(n+1);
 
-    pre_num = post_num = 0;
+    pre_num = 0;
 
-    dfs(t);
+    for(int i = 1; i <= n; i++){
+      if(!visited[i])
+        dfs(i);
+    }
+  }
+
+  int ans(){
+    int num = 0;
+    for(int i = 1; i <= n; i++){
+      if(num_of_bridges[i] == 1){
+        num++;
+      }
+    }
+    if(num%2){
+      return num/2+1;
+    }
+    return num/2;
   }
 };
 
-int main(){ // mam pre, post i art -> debug, ...
+int main(){
   fastio;
 
   int n, m;
@@ -72,29 +78,13 @@ int main(){ // mam pre, post i art -> debug, ...
 
   Graph graph(n);
 
+  
   for(int a, b; m--;){
+
     cin >> a >> b;
     graph.push(a, b);
   }
 
-  for(int x : graph.pre){
-    cout << x+1 << ' ';
-  } cout << '\n';
-
-  for(int x : graph.post){
-    cout << x+1 << ' ';
-  } cout << '\n';
+  graph.find_bridges();
+  cout << graph.ans();
 }
-
-/*
-1 2 3 4 5 6 7 8 9
-
-1 2 3 4 5 6 7 8 9 
-9 7 5 4 3 2 1 6 8
-
-1  2 3  4 5 6 7 8 9
-0 -1 0  0 0 0 0 1 0
-
-
-
-*/
