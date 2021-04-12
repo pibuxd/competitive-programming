@@ -20,7 +20,7 @@ struct Graph {
   }
 
   void bridge(int a, int b){
-    num_of_bridges[a]++,num_of_bridges[b]++;
+    num_of_bridges[a]++, num_of_bridges[b]++;
   }
 
   void dfs(int v, int parent = -1){
@@ -56,7 +56,7 @@ struct Graph {
     }
   }
 
-  int ans(){
+  int result(){
     int num = 0;
     for(int i = 1; i <= n; i++){
       if(num_of_bridges[i] == 1){
@@ -86,5 +86,5 @@ int main(){
   }
 
   graph.find_bridges();
-  cout << graph.ans();
+  cout << graph.result();
 }

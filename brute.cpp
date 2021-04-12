@@ -11,7 +11,7 @@ int shortest_period(string &s){
   for(int i = 0; i <= (n+1)/2; i++, check = true, pattern = ""){
     for(int it = 0; it <= i; it++){
       pattern += s[it];
-    }
+    } 
     //cout << pattern << " ";
 
     for(int it = 0; it < n; it++){

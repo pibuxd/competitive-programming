@@ -1,12 +1,15 @@
+// * find BRIDGES and SCC using function LOW and calculate result
 #include <bits/stdc++.h>
 using namespace std;
 #define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
 
 struct Graph {
+  int n, pre_num, components;
   vector<vector<int>> G;
   vector<bool> visited;
-  vector<int> low, pre, post, articulations; 
-  int n, pre_num, post_num;
+  vector<int> low, pre, num_of_bridges;
+  vector<pair<int, int>> input;
+  map<pair<int, int>, int> edges;
 
   Graph(int _n){
     n = _n;
@@ -16,16 +19,62 @@ struct Graph {
   void push(int a, int b){
     G[a].push_back(b);
     G[b].push_back(a);
+    input.push_back({a, b});
+    
+    if(edges[{a, b}])
+      edges[{b, a}] = 3;
+    else
+      edges[{a, b}] = 3; // default value = 3, directed: a -> b = 1, a <- b = 2
   }
 
-  void is_articulation(int v){
-    articulations.push_back(v);
+  void dfs_in_component(int v){
+    for(int x : G[v]){
+      if(edges[{v, x}] == 3){
+        edges[{v, x}] = 1;
+        dfs_in_component(x);
+      } else if(!edges[{v, x}]){
+        edges[{x, v}] = 2;
+        dfs_in_component(x);
+      }
+    }
+  }
+
+  void bridge(int a, int b){
+    if(edges[{a, b}] && edges[{b, a}])
+      return;
+
+    cout << "BRIDGE: " << a << "," << b << endl;
+    components += 2;
+
+    if(edges[{a, b}] == 3){
+        edges[{a, b}] = 1;
+    } else if(!edges[{a, b}]){
+        edges[{b, a}] = 2;
+    }
+    for(int v : G[a]){
+      if(edges[{a, v}] == 3){
+        edges[{a, v}] = 1;
+        dfs_in_component(v);
+      } else if(!edges[{a, v}]){
+        edges[{v, a}] = 2;
+        dfs_in_component(v);
+      }
+    }
+
+    for(int v : G[b]){
+      if(edges[{b, v}] == 3){
+        edges[{b, v}] = 1;
+        dfs_in_component(v);
+      } else if(!edges[{b, v}]){
+        edges[{v, b}] = 2;
+        dfs_in_component(v);
+      }
+    }
   }
 
   void dfs(int v, int parent = -1){
     visited[v] = true;
     pre[v] = low[v] = pre_num++;
-    int num_of_children = 0;
 
     for(int x : G[v]){
       if(x == parent) continue;
@@ -36,35 +85,34 @@ struct Graph {
         dfs(x, v);
         low[v] = min(low[v], low[x]);
 
-        if(low[x] >= pre[v] && parent != -1){
-          is_articulation(v);
-        }
-
-        num_of_children++;
+        if(low[x] > pre[v])
+          bridge(v, x);
       }
     }
-
-    if(parent == -1 && num_of_children > 1 && v != t){
-      is_articulation(v);
-    }
-    
-    post[v] = post_num++;
   }
 
-  void find_articulations(){
+  void find_bridges_and_components(){
     visited.resize(n+1);
     pre.resize(n+1);
-    post.resize(n+1);
     low.resize(n+1);
-    articulations.resize(n+1);
+    pre_num = components = 0;
 
-    pre_num = post_num = 0;
+    for(int i = 1; i <= n; i++){
+      if(!visited[i])
+        dfs(i);
+    }
+  }
 
-    dfs(t);
+  void print(){
+    cout << components << "\n";
+
+    for(int i = 1; i <= n; i++){
+      
+    }
   }
 };
 
-int main(){ // mam pre, post i art -> debug, ...
+int main(){
   fastio;
 
   int n, m;
@@ -77,24 +125,6 @@ int main(){ // mam pre, post i art -> debug, ...
     graph.push(a, b);
   }
 
-  for(int x : graph.pre){
-    cout << x+1 << ' ';
-  } cout << '\n';
-
-  for(int x : graph.post){
-    cout << x+1 << ' ';
-  } cout << '\n';
+  graph.find_bridges_and_components();
+  graph.print();
 }
-
-/*
-1 2 3 4 5 6 7 8 9
-
-1 2 3 4 5 6 7 8 9 
-9 7 5 4 3 2 1 6 8
-
-1  2 3  4 5 6 7 8 9
-0 -1 0  0 0 0 0 1 0
-
-
-
-*/
