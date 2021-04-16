@@ -1,83 +1,78 @@
+/**
+ * * lazy propagation segment tree
+ * * range set value, range maximum
+ */
 #include <bits/stdc++.h>
 using namespace std;
+#define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
 
-constexpr int base = 1 << 20;
-constexpr int INF = 1<<30;
-int tree[base * 2];
-int star[base * 2];
+const int MAX_tree_size = 1<<21;
+int tree[MAX_tree_size];
+int lazy[MAX_tree_size];
 
-void push(int x) {
-    tree[x * 2] += star[x];
-    tree[x * 2 + 1] += star[x];
-    star[x * 2] += star[x];
-    star[x * 2 + 1] += star[x];
-    star[x] = 0;
+int nearest_2pot(int x) {
+ int ans;
+
+ ans = 1;
+ while(ans < x)
+    ans <<= 1;
+
+ return ans;
 }
 
-void add(int x, int qFrom, int qTo, int from, int to, int value) {
-    if (qFrom <= from && to <= qTo) {
-        tree[x] += value;
-        star[x] += value;
-
-        return;
-     }
-
-    if (star[x] != 0) {
-        push(x);
-    }
-
-    int avg = (from + to) / 2;
-
-    if (qFrom <= avg)
-        add(x * 2, qFrom, qTo, from, avg, value);
-    if (avg < to)
-        add(x * 2, qFrom, qTo, avg + 1, to, value);
-
-    tree[x] = max(tree[x * 2], tree[x * 2 + 1]);
+void push(int v){
+ if(lazy[v] == 0)
+    return;
+ tree[2*v] = lazy[v];
+ tree[2*v + 1] = lazy[v];
+ lazy[2*v] = lazy[v];
+ lazy[2*v + 1] = lazy[v];
+ lazy[v] = 0;
 }
 
-int read(int x, int qFrom, int qTo, int from, int to) {
-    if (qFrom <= from && to <= qTo)
-        return tree[x];
-    if (star[x] != 0)
-        push(x);
+int query_max(int p, int k, int v, int a, int b){
+ if (a > k || b < p)
+     return 0;
 
-    int avg = (from + to) / 2;
-    int result = -INF;
+ if(a >= p && b <= k)
+     return tree[v];
 
-    if (qFrom <= avg)
-        result = max(result, read(x * 2, qFrom, qTo, from, avg));
-    if (avg < qTo)
-        result = max(result, read(x * 2 + 1, qFrom, qTo, avg + 1, to));
+ push(v);
+ return max(query_max(p, k, 2*v, a, (a + b)/2), query_max(p, k, 2 * v + 1, (a + b)/2+1, b));
+}
 
-    tree[x] = max(tree[x * 2], tree[x * 2 + 1]);
+void update_set(int p, int k, int v, int a, int b, int value){
+ if(a > k || b < p)
+     return;
 
-    return result;
+ if(a >= p && b <= k){
+     tree[v] = value;
+     lazy[v] = value;
+     return;
+ }
+
+ push(v);
+ update_set(p, k, 2*v, a, (a + b) / 2, value);
+ update_set(p, k, 2*v + 1, (a + b) / 2 + 1, b, value);
+ tree[v] = max(tree[2*v], tree[2*v + 1]);
 }
 
 int main() {
-    int n,k;
-    cin>>k>>n;
+ fastio;
 
-    unsigned int offset2 = k;
-    offset2--;
-    offset2 |= offset2 >> 1;
-    offset2 |= offset2 >> 2;
-    offset2 |= offset2 >> 4;
-    offset2 |= offset2 >> 8;
-    offset2 |= offset2 >> 16;
-    offset2++;
+ int m, n;
+ cin >> n >> m;
 
-    for(int i=0;i<n;i++) {
-        int a,b;
-        cin >> b >> a;
-        b--;
-        a++;
-        //int m = read(1, k, a, a+b, 1);
-        add(1, 0, k, a, a+b, 1);
-    }
+ int temp = nearest_2pot(n);
+ int tree_size = 2 * temp;
 
-    for(int i=1; i < k; i++){
-        cout << tree[i] << '\n';
-    }
+ for(int i = 0, kolcek_start, kolcek_end, kolek_len; i < m; i++){
+    cin >> kolek_len >> kolcek_start;
+    kolek_len--;
+    kolcek_end = kolcek_start + kolek_len;
+    int max_on_segment = query_max(kolcek_start, kolcek_end, 1, 0, temp-1);
+    update_set(kolcek_start, kolcek_end, 1, 0, temp-1, max_on_segment + 1);	
+ }
+ 
+ cout << tree[1] << "\n";
 }
