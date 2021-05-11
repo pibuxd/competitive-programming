@@ -1,51 +1,163 @@
-#include "bits/stdc++.h"
+#include <bits/stdc++.h>
 using namespace std;
+#define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
 
-int V, E, minMOV, lastL;
+struct Graph{
+  int n, trans;
+  vector<int> lab;
+  vector<vector<int>> G;
 
-void readGraph(vector<int> &L, vector<vector<int>> &G, vector<int> &previous){
-  vector<bool> hasParent(V+1);
+  Graph(int _n){
+    n = _n;
+    trans = 0;
+    lab.resize(n+1);
+    G.resize(n+1);
+  }
 
-  for(int i = 1; i <= V; i++)
-    cin >> L[i];
-  for(int i = 0, a, b; i < E; i++){
-    cin >> a >> b;
+  void set(int x, int i){
+    lab[i] = x;
+  }
+
+  void push(int a, int b){
     G[a].push_back(b);
-    hasParent[b] = true;
   }
-  for(int i = 1; i <= V; i++)
-    if(!hasParent[i])
-      previous.push_back(i);
-}
+  
+  void run(){
+    trans = 0;
 
-void minNumMoves(vector<int> &L, vector<vector<int>> &G, int prevL){
-  queue<int> Q;
-  Q.push();
+    vector<int> opened_for(n+1);
+    for(int i = 1; i <= n; i++) for(int x : G[i]) opened_for[x]++;
 
-  while(!Q.empty()){
-    int v = Q.front();
-    Q.pop();
+    stack<int> S1, S2;
 
-    for(int x : G[v]){
-
+    for(int i = 1; i <= n; i++){
+      if(opened_for[i] == 0){
+        if(lab[i] == 1)
+          S1.push(i);
+        else
+          S2.push(i);
+      }
     }
-  }
-}
 
-int main(void){ ios_base::sync_with_stdio(0); cout.tie(0); cin.tie(0);
-  int T;
-  cin >> T;
-  while(T--){
-    minMOV = 0;
-    cin >> V >> E;
-    vector<int> L(V+1);
-    vector<vector<int>> G(V+1);
-    vector<int> previous;
-    readGraph(L, G, previous);
-    vector<bool> visited(V+1);
-    lastL = previous[0];
-    for(int prevL : previous)
-      if(!visited[prevL])
-        minNumMoves(L, G, prevL);
-  }    
+    int current = 1, v;
+    if(S1.empty()) current = 2;
+
+    while(!S1.empty() || !S2.empty()){
+      //cout << "TRANSFORMS: " << trans << "\n";
+      //cout << "CURRENT: " << current << "\n";
+      
+      if(current == 1 && S1.empty()){
+        current = 2;
+        trans++;
+      } else if(current == 2 && S2.empty()){
+        current = 1;
+        trans++;
+      }
+  
+      if(current == 1){
+        v = S1.top();
+        S1.pop();
+      } else{
+        v = S2.top();
+        S2.pop();
+      }
+
+      for(int x : G[v]){
+        opened_for[x]--;
+
+        if(opened_for[x] == 0){
+          if(lab[x] == 1){
+            S1.push(x);
+          } else{
+            S2.push(x);
+          }
+        }
+        //cout << "SIZES: " << S1.size() << "," << S2.size() << "\n";
+      }
+    }
+    int trans2 = trans;
+
+    trans = 0;
+
+    opened_for = vector<int>(n+1);
+    for(int i = 1; i <= n; i++) for(int x : G[i]) opened_for[x]++;
+
+    S1 = S2 = stack<int>();
+
+    for(int i = 1; i <= n; i++){
+      if(opened_for[i] == 0){
+        if(lab[i] == 1)
+          S1.push(i);
+        else
+          S2.push(i);
+      }
+    }
+
+    current = 2;
+    if(S2.empty()) current = 1;
+
+    while(!S1.empty() || !S2.empty()){
+      //cout << "TRANSFORMS: " << trans << "\n";
+      //cout << "CURRENT: " << current << "\n";
+      
+      if(current == 1 && S1.empty()){
+        current = 2;
+        trans++;
+      } else if(current == 2 && S2.empty()){
+        current = 1;
+        trans++;
+      }
+  
+      if(current == 1){
+        v = S1.top();
+        S1.pop();
+      } else{
+        v = S2.top();
+        S2.pop();
+      }
+
+      for(int x : G[v]){
+        opened_for[x]--;
+
+        if(opened_for[x] == 0){
+          if(lab[x] == 1){
+            S1.push(x);
+          } else{
+            S2.push(x);
+          }
+        }
+        //cout << "SIZES: " << S1.size() << "," << S2.size() << "\n";
+      }
+    }
+
+    trans = min(trans, trans2);
+  }
+
+  int min_num_of_transfers(){
+    return trans;
+  }
+};
+
+int main(){
+  fastio;
+  int t; cin >> t;
+
+  while(t--){
+    int n, m; cin >> n >> m;
+
+    Graph graph(n);
+
+    for(int i = 1; i <= n; i++){
+      int a; cin >> a;
+      graph.set(a, i);
+    }
+
+    while(m--){
+      int a, b; cin >> a >> b;
+      graph.push(a, b);
+    }
+
+    graph.run();
+    cout << graph.min_num_of_transfers() << "\n";
+  }
 }
