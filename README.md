@@ -1,6 +1,6 @@
 # Algorithmics stuff
 
-These are my solutions from algorithms from the following websites:
+These are my solutions from the following websites:
 
 ## Table of Contents
 
@@ -10,8 +10,11 @@ solutions from "Codeforces"
 - ***[CSES](https://cses.fi/problemset/list/)***
 solutions from CSES, Finnish platform with problems
 
+- ***[USACO](http://www.usaco.org/index.php?page=contests)***
+solutions USA Computing Olympiad
+
 - ***[OI_arch](https://szkopul.edu.pl/p/default/problemset/oi)***
-solutions from the archives of the Polish IT Olympics
+solutions from the archives of the Polish Computing Olympiad
 
 - ***[PA](https://potyczki.mimuw.edu.pl/)***
 solutions from the Polish contest "Potyczki Algorytmiczne"
@@ -20,7 +23,7 @@ solutions from the Polish contest "Potyczki Algorytmiczne"
 solutions from my high school "PIWO" problems
 
 - ***[Satori](https://satori.tcs.uj.edu.pl/)***
-solutions from high school and Jagiellonian university contestants
+solutions from high school and Jagiellonian University contests
 
 - ***[Szkola](https://szkopul.edu.pl/)***
 stuff from my high school, mostly "Szkopul"
