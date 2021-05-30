@@ -11,10 +11,10 @@ solutions from "Codeforces"
 solutions from CSES, Finnish platform with problems
 
 - ***[USACO](http://www.usaco.org/index.php?page=contests)***
-solutions USA Computing Olympiad
+solutions from the USA Computing Olympiad
 
 - ***[OI_arch](https://szkopul.edu.pl/p/default/problemset/oi)***
-solutions from the archives of the Polish Computing Olympiad
+solutions from the Polish Computing Olympiad
 
 - ***[PA](https://potyczki.mimuw.edu.pl/)***
 solutions from the Polish contest "Potyczki Algorytmiczne"
