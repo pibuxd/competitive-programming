@@ -34,3 +34,7 @@ stuff from my high school, mostly "Szkopul"
 + ***generator.cpp*** - creates random input for task
 + ***brute.cpp*** - the brute solution which checks if the pattern is correct
 + ***tester.sh*** - a bash script that manages the pattern testing process
+
+## License
+
+if you want tou use it just write it's mine.
