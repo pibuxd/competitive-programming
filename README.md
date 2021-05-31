@@ -10,11 +10,11 @@ solutions from "Codeforces"
 - ***[CSES](https://cses.fi/problemset/list/)***
 solutions from CSES, Finnish platform with problems
 
-- ***[USACO](http://www.usaco.org/index.php?page=contests)***
-solutions from the USA Computing Olympiad
-
 - ***[OI_arch](https://szkopul.edu.pl/p/default/problemset/oi)***
 solutions from the Polish Computing Olympiad
+
+- ***[WSI](https://solve.edu.pl/~sparingi/tasks)***
+solutions from "Wrocławskie Sparingi Informatyczne"
 
 - ***[PA](https://potyczki.mimuw.edu.pl/)***
 solutions from the Polish contest "Potyczki Algorytmiczne"
