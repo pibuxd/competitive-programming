@@ -23,10 +23,10 @@ solutions from the Polish contest "Potyczki Algorytmiczne"
 solutions from my high school "PIWO" problems
 
 - ***[Satori](https://satori.tcs.uj.edu.pl/)***
-solutions from high school and Jagiellonian University contests
+solutions from my high school and Jagiellonian University contests
 
 - ***[Szkola](https://szkopul.edu.pl/)***
-stuff from my high school, mostly "Szkopul"
+stuff from my high school
 
 ## Testing
 
