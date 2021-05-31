@@ -37,4 +37,4 @@ stuff from my high school, mostly "Szkopul"
 
 ## License
 
-if you want tou use it just write it's mine.
+if you want to use it just write it's mine.
