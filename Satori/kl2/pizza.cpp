@@ -17,7 +17,7 @@ auto solve(vector<int> &p){
   auto maxi = 0;
   for(auto i = 0; i < n; i++){
     for(auto j = 1; j < n; j++)
-      maxi = max(maxi, drug[i+1][j]+p[i]);
+      maxi = max(maxi, drug[(i+1)%n][(i-1+n)%n]+p[i]);
   }
 
   auto sum2 = 0;
