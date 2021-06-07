@@ -26,7 +26,10 @@ solutions from my high school "PIWO" problems
 solutions from my high school and Jagiellonian University contests
 
 - ***[Szkola](https://szkopul.edu.pl/)***
-stuff from my high school
+stuff from my high 
+
+- ***Algorithms***
+ready-made algorithms
 
 ## Testing
 
