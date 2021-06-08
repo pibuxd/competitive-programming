@@ -29,12 +29,11 @@ int main(){
   int n, m;
   cin >> n >> m;
 
-  childs = vector<vector<int>>(n+1);
-
   // if this wouldn't be "+ 1",
   // tree with height equal to n would be bugged when k = n 
   LOGN = ceil(log2(n)) + 1;
   
+  childs = vector<vector<int>>(n+1);
   up = vector<vector<int>>(n+1, vector<int>(LOGN));
   up[1][0] = 0;
 
