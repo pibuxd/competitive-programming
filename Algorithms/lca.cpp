@@ -6,13 +6,13 @@ int LOGN;
 vector<int> depth;
 vector<vector<int>> up, childs;
 
-void dfs(int x){ // calculating binary lifting
-  for(int v : childs[x]){
-    depth[v] = depth[x] + 1;
+void dfs(int v){ // calculating binary lifting
+  for(int x : childs[v]){
+    depth[x] = depth[v] + 1;
     for(int i = 1; i < LOGN; i++)
-      up[v][i] = up[up[v][i-1]][i-1];
+      up[x][i] = up[up[x][i-1]][i-1];
 
-    dfs(v);
+    dfs(x);
   }
 }
 
@@ -36,7 +36,6 @@ int lca(int a, int b){
   }
 
   return up[a][0];
-  
 }
 
 int main(){
