@@ -1,8 +1,6 @@
 # Algorithmics stuff
 
-These are my solutions from the following websites:
-
-## Table of Contents
+## These are my solutions from the following content
 
 - ***[CFORC](https://codeforces.com/)***
 solutions from "Codeforces"
@@ -37,7 +35,3 @@ ready-made algorithms
 + ***generator.cpp*** - creates random input for task
 + ***brute.cpp*** - the brute solution which checks if the pattern is correct
 + ***tester.sh*** - a bash script that manages the pattern testing process
-
-## License
-
-if you want to use it just write it's mine.
