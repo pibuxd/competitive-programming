@@ -1,4 +1,5 @@
-// * topological sort done using BFS. Known as Kahn's algorithm
+// * topological in DAG sort done using BFS. Known as Kahn's algorithm
+// DAG - Directed Acyclic Graph
 #include <bits/stdc++.h>
 using namespace std;
 
