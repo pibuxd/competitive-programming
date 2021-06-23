@@ -33,8 +33,8 @@ void dijkstra(int start){
 }
 
 int main(){
-  int start = 1; // starting node
-  cin >> n >> m;
+  int start; // starting node
+  cin >> n >> m >> start;
   G.resize(n+1);
   parent.resize(n+1);
   dist.resize(n+1, INF);
