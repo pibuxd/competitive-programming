@@ -1,17 +1,5 @@
-#include "bits/stdc++.h"
+#include <bits/stdc++.h>
 using namespace std;
-
-/* --------------------------------------------------------------------------
-  * Zrobilem to smiesznie, czyli globalnie i funkcyjnie,                    |
-  gdyby mi sie chcialo zamiast globalnie zrobilbym struktury,              |
-  ale zaczalem globalnie i mi sie nie chce juz zmieniac :(                |
-                                                                         |
-  * Tak wiem najlepiej byloby obiektowo, ale...                         |
-                                                                       |
-  * Ogolnie to mam downa bo mozna by to zrobic na operatorach "&"     |
-  * Ten program pewnie zjada wiecej ramu niz Chrome                  |
-____________________________________________________________________|
-*/
 
 #define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 
