@@ -2,41 +2,49 @@
 // directed or undirected weighted graph, no negative weight edges
 #include <bits/stdc++.h>
 using namespace std;
+#define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
 
 const long long INF = LONG_MAX;
-int n, m;
+int n;
 vector<vector<pair<int, long long>>> G;
-vector<int> parent;
 vector<long long> dist;
 
 void dijkstra(int start){
   dist[start] = 0;
-  priority_queue<pair<long long, int>> PQ;
-  PQ.push({0, start});
+  priority_queue<pair<long long, pair<int, int>>> PQ; // dist, <node, max>
+  PQ.push({0, {start, 0}});
 
   while(!PQ.empty()){
     long long w = -PQ.top().first;
-    int v = PQ.top().second;
+    int v = PQ.top().second.first;
+    int maxw = PQ.top().second.second;
+ 
     PQ.pop();
 
     if(w != dist[v])
       continue;
 
     for(auto x : G[v]){
-      if(dist[x.first] > dist[v] + x.second){
-        dist[x.first] = dist[v] + x.second;
-        parent[x.first] = v;
-        PQ.push({-dist[x.first], x.first});
+      long long add;
+      if(x.second > maxw){
+        add = x.second/2 + maxw - maxw/2;
+        maxw = x.second;
+      } else{
+        add = x.second;
+      }
+      if(dist[x.first] > dist[v] + add){
+        dist[x.first] = dist[v] + add;
+        PQ.push({-dist[x.first], {x.first, maxw}});
       }
     }
   }
 }
 
-int main(){
-  int start = 1; // starting node
+int main(){ fastio;
+  int m;
   cin >> n >> m;
+  int start = 1; // starting node
   G.resize(n+1);
-  parent.resize(n+1);
   dist.resize(n+1, INF);
 
   for(int i = 0; i < m; i++){
@@ -48,6 +56,6 @@ int main(){
 
   dijkstra(start);
 
-  for(int i = 1; i <= n; i++)
-    cout << dist[i] << " ";
+  long long ans = dist[n];
+  cout << ans;
 }
