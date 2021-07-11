@@ -1,0 +1,31 @@
+sortings and searchings:
+  quick sort
+  merge sort
+  binary search
+
+dynamic programming:
+  Longest Common Subsequence
+  Longest Increasing Subsequence
+  Minimum Partition
+  Ways to Cover a Distance
+  Longest Path In Matrix
+  Subset Sum Problem
+  Optimal Strategy for a Game
+  0-1 Knapsack Problem
+  Assembly Line Scheduling
+
+segment tree:
+  UPDATE / QUERY
+  point    range
+  range    point
+  range    range
+
+strings:
+  edit distance
+  KMP
+  Ragbin karp
+  sufix table
+
+miscellaneous:
+  quick power
+  euclidean algorithm
