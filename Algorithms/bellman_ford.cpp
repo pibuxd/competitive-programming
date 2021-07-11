@@ -1,4 +1,5 @@
-// * finds shortest paths from a starting node to all nodes and detect negative cycle in the graph
+// * finds shortest paths from a starting node to all nodes
+// * detect negative cycle in the graph
 // directed weighted graph
 #include <bits/stdc++.h>
 using namespace std;

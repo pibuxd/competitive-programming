@@ -1,4 +1,5 @@
-// * binary lifting/jumping using binary representation and DFS
+// * binary lifting/jumping
+// * using binary representation and DFS
 // tree
 #include <bits/stdc++.h>
 using namespace std;

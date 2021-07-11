@@ -1,4 +1,5 @@
-// * LCA – Lowest Common Ancestor using binary lifting/jumping
+// * LCA – Lowest Common Ancestor
+// * using binary lifting/jumping
 // tree
 #include <bits/stdc++.h>
 using namespace std;
