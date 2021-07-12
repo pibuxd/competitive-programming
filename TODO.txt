@@ -1,10 +1,10 @@
 sortings and searchings:
-  quick sort
-  merge sort
-  binary search
+  X quick sort
+  X merge sort
+  OK binary search
 
 dynamic programming:
-  Longest Common Subsequence
+  OK  Longest Common Subsequence
   Longest Increasing Subsequence
   Minimum Partition
   Ways to Cover a Distance
@@ -32,5 +32,6 @@ strings:
   sufix table
 
 miscellaneous:
-  quick power
-  euclidean algorithm
+  OK quick power
+  OK euclidean algorithm
+  OK binary to decimal and vice versa
