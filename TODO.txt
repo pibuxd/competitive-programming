@@ -20,6 +20,11 @@ segment tree:
   range    point
   range    range
 
+graphs:
+  Strongly Connected Components
+    Bridges
+    Articulation Points
+
 strings:
   edit distance
   KMP
