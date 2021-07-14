@@ -1,18 +1,18 @@
 sortings and searchings:
   X quick sort
   X merge sort
-  OK binary search
+    OK binary search
 
 dynamic programming:
-  OK  Longest Common Subsequence
-  Longest Increasing Subsequence
+    OK  Longest Common Subsequence
+    next Longest Increasing Subsequence
   Minimum Partition
   Ways to Cover a Distance
   Longest Path In Matrix
-  Subset Sum Problem
+    half Subset Sum Problem (Coin change with distinct change)
   Optimal Strategy for a Game
   0-1 Knapsack Problem
-  Assembly Line Scheduling
+
 
 segment tree:
   UPDATE / QUERY
@@ -32,6 +32,6 @@ strings:
   sufix table
 
 miscellaneous:
-  OK quick power
-  OK euclidean algorithm
-  OK binary to decimal and vice versa
+    OK quick power
+    OK euclidean algorithm
+    OK binary to decimal and vice versa

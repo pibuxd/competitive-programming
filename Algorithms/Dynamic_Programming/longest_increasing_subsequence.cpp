@@ -18,6 +18,7 @@ int lis_slow(){
   return *max_element(dp.begin(), dp.end());
 }
 
+// TODO
 // O(n*log(n))
 int lis_fast(){
   return 0;
