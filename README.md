@@ -35,3 +35,4 @@ ready-made algorithms
 + ***generator.cpp*** - creates random input for task
 + ***brute.cpp*** - the brute solution which checks if the pattern is correct
 + ***tester.sh*** - a bash script that manages the pattern testing process
++ ***tester-portable.sh*** - very simple bash script that manages the pattern testing process
