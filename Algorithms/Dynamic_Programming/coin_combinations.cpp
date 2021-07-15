@@ -20,7 +20,15 @@ int coin_combinations(){
 
 // combinations can't repeat, eg. 2+3+5 is equal to 2+5+3
 int coin_combinations_distinct(){
-  return 0;
+  vector<int> dp(x+1, 0);
+  dp[0] = 1; // eg. when 5 can be combined by only 5
+  
+  for(int d : c)
+    for(int j = 1; j <= x; j++)
+      if(d <= j)
+        dp[j] += dp[j-d];
+
+  return dp[x];
 }
 
 int main(){
