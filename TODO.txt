@@ -4,14 +4,10 @@ sortings and searchings:
     OK binary search
 
 dynamic programming:
-    OK  Longest Common Subsequence
     next Longest Increasing Subsequence
   Minimum Partition
   Ways to Cover a Distance
-  Longest Path In Matrix
-    half Subset Sum Problem (Coin change with distinct change)
   Optimal Strategy for a Game
-  0-1 Knapsack Problem
 
 
 segment tree:
@@ -26,7 +22,7 @@ graphs:
     Articulation Points
 
 strings:
-  edit distance
+    OK edit distance
   KMP
   Ragbin karp
   sufix table
@@ -35,3 +31,4 @@ miscellaneous:
     OK quick power
     OK euclidean algorithm
     OK binary to decimal and vice versa
+    OK fibonacci numbers
