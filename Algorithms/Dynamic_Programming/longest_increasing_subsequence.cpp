@@ -18,10 +18,18 @@ int lis_slow(){
   return *max_element(dp.begin(), dp.end());
 }
 
-// TODO
 // O(n*log(n))
 int lis_fast(){
-  return 0;
+  vector<int> lis;
+  for(int x : a){
+    int p = lower_bound(lis.begin(), lis.end(), x) - lis.begin();
+    if(p < lis.size())
+      lis[p] = x;
+    else
+      lis.push_back(x);
+  }
+
+  return lis.size();
 }
 
 int main(){
