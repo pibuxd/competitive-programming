@@ -1,4 +1,4 @@
-// * Edit distance
+// * Edit distance (also dynamic programming problem)
 // * the minimum number of operations required to transform one string into the other
 // * add, remove or replace one character
 #include <bits/stdc++.h>

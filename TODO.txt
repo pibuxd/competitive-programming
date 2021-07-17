@@ -1,14 +1,9 @@
 sortings and searchings:
-  X quick sort
-  X merge sort
-    OK binary search
+  quick sort
+  merge sort
 
 dynamic programming:
-    next Longest Increasing Subsequence
-  Minimum Partition
-  Ways to Cover a Distance
   Optimal Strategy for a Game
-
 
 segment tree:
   UPDATE / QUERY
@@ -16,19 +11,8 @@ segment tree:
   range    point
   range    range
 
-graphs:
-  Strongly Connected Components
-    Bridges
-    Articulation Points
-
 strings:
     OK edit distance
   KMP
   Ragbin karp
   sufix table
-
-miscellaneous:
-    OK quick power
-    OK euclidean algorithm
-    OK binary to decimal and vice versa
-    OK fibonacci numbers
