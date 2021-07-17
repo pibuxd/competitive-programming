@@ -1,7 +1,8 @@
-// Tarjan's SCC
+// * Tarjan's algorithm fo SCC (Strongly Connected Components)
+// low-link (low) is a value of a node is the lowest node id
+// reachable from that node when doing a DFS (including itself)
 #include <bits/stdc++.h>
 using namespace std;
-#define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
 
 int n, m, id;
 vector<vector<int>> G;
@@ -21,7 +22,7 @@ void dfs(int v){
       low[v] = min(low[v], low[x]);
   }
 
-  if(ids[v] == low[v]) // check if it is starting point of SCC
+  if(ids[v] == low[v]) // starting point of SCC
     for(int node = st.top();; node = st.top()){
       st.pop();
       on_st[node] = false;
@@ -32,7 +33,6 @@ void dfs(int v){
 }
 
 int main(){
-  fastio;
   cin >> n >> m;
   G.resize(n+1);
 
@@ -53,19 +53,17 @@ int main(){
       dfs(i);
     }
   
-  /*
   cout << "\n";
   for(int i = 1; i <= n; i++)
     cout << i << ": " << low[i] << "\n";
-  */
-
-  map<int, int> ans;
-  int temp = 1, number_of_scc = 0;
-  for(int i = 1; i <= n; i++)
-    if(!ans[low[i]])
-      ans[low[i]] = temp, temp++, number_of_scc++;
   
-  cout << number_of_scc << "\n";
-  for(int i = 1; i <= n; i++)
-    cout << ans[low[i]] << " ";
+  /*
+  example input:
+  1 2
+  2 3
+  3 1
+  3 4
+  4 5
+  5 4
+  */
 }
