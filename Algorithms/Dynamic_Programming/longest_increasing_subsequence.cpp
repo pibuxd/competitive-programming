@@ -20,16 +20,16 @@ int lis_slow(){
 
 // O(n*log(n))
 int lis_fast(){
-  vector<int> lis;
+  vector<int> v;
   for(int x : a){
-    int p = lower_bound(lis.begin(), lis.end(), x) - lis.begin();
-    if(p < lis.size())
-      lis[p] = x;
+    int p = lower_bound(v.begin(), v.end(), x) - v.begin();
+    if(p < v.size())
+      v[p] = x;
     else
-      lis.push_back(x);
+      v.push_back(x);
   }
 
-  return lis.size();
+  return v.size();
 }
 
 int main(){
