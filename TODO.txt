@@ -6,10 +6,10 @@ dynamic programming:
   Optimal Strategy for a Game
 
 segment tree:
-  UPDATE / QUERY
-  point    range
-  range    point
-  range    range
+     UPDATE / QUERY
+OK   point    range (Segment Tree)
+half range    point (Fenwick Tree/Binary Indexed Tree)
+next range    range (Lazy Propagation Segment Tree)
 
 strings:
     OK edit distance

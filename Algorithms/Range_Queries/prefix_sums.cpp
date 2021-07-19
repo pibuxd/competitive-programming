@@ -1,10 +1,9 @@
 // * Prefix sums
 #include <bits/stdc++.h>
 using namespace std;
-#define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
 
 int n, q;
-vector<long long> a, dp;
+vector<int> a, dp;
 
 void prefix(){
   dp[0] = 0;
@@ -13,7 +12,6 @@ void prefix(){
 }
 
 int main(){
-  fastio;
   cin >> n >> q;
   a.resize(n+1);
 
@@ -26,7 +24,7 @@ int main(){
   while(q--){
     int a, b;
     cin >> a >> b;
-    long long ans = dp[b] - dp[a-1];
+    int ans = dp[b] - dp[a-1];
     cout << ans << "\n";
   }
 }

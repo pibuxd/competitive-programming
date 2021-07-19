@@ -1,11 +1,13 @@
+// * Fenwick Tree or BIT (Binary Indexed Tree)
+// * RANGE add, POINT query
 #include <bits/stdc++.h>
 using namespace std;
 #define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
-#define ll long long
 
 int n, m;
-vector<ll> tree;
+vector<int> tree;
 
+// add x from k to n
 void add(int k, int x){
   while(k <= n){
     tree[k] += x;
@@ -18,8 +20,9 @@ void range_add(int l, int r, int val){
   add(r+1, -val);
 }
 
-ll query(int k){
-  ll s = 0;
+// sum from 1 to k
+int query(int k){
+  int s = 0;
   while(k > 0){
     s += tree[k];
     k -= k &- k; // get first bit on eg. 10 = 1010 -> 2^1
