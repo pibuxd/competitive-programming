@@ -1,5 +1,5 @@
 sortings and searchings:
-  quick sort
+half  quick sort
   merge sort
 
 dynamic programming:
