@@ -8,7 +8,7 @@ solutions from "Codeforces"
 - ***[CSES](https://cses.fi/problemset/list/)***
 solutions from CSES, Finnish platform with problems
 
-- ***[OI_arch](https://szkopul.edu.pl/p/default/problemset/oi)***
+- ***[OI_archive](https://szkopul.edu.pl/p/default/problemset/oi)***
 solutions from the Polish Computing Olympiad
 
 - ***[WSI](https://solve.edu.pl/~sparingi/tasks)***
