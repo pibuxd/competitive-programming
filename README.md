@@ -29,6 +29,9 @@ stuff from my high school
 - ***[WSI](https://solve.edu.pl/~sparingi/tasks)***
 solutions from "Wrocławskie Sparingi Informatyczne"
 
+- ***Other***
+other contests
+
 ## Testing
 
 + ***pattern.cpp*** - the solution that is checked if it is correct
