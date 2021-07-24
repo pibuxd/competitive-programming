@@ -1,13 +1,11 @@
 sortings and searchings:
-half  quick sort
+    half quick sort
   merge sort
-
-dynamic programming:
-  Optimal Strategy for a Game
 
 segment tree:
      UPDATE / QUERY
 OK   point    range (Segment Tree)
+OK   indexed set
 half range    point (Fenwick Tree/Binary Indexed Tree)
 next range    range (Lazy Propagation Segment Tree)
 
