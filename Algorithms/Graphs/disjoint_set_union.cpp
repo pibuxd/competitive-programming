@@ -5,7 +5,6 @@
 using namespace std;
 
 int n, m;
-vector<vector<int>> G;
 vector<int> parent, siz;
 
 void make_set(int v){
