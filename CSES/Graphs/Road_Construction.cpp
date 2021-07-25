@@ -1,11 +1,9 @@
-// * Disjoint Set Union (DSU)
-// siz - size of unions
-// smaller union merge with bigger union
+// * Disjoint Set Union
 #include <bits/stdc++.h>
 using namespace std;
+#define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
 
-int n, m;
-vector<vector<int>> G;
+int n, m, sets, max_set;
 vector<int> parent, siz;
 
 void make_set(int v){
@@ -27,24 +25,30 @@ void union_sets(int a, int b){
       swap(a, b);
     parent[b] = a;
     siz[a] += siz[b];
+    max_set = max(max_set, siz[a]);
   }
 }
 
 int main(){
+  fastio;
   cin >> n >> m;
   parent.resize(n+1);
   siz.resize(n+1);
+  sets = n;
+  max_set = 0;
 
   for(int i = 1; i <= n; i++)
     make_set(i);
-  
+
   for(int i = 1; i <= m; i++){
     int a, b;
     cin >> a >> b;
-
     a = find_set(a);
     b = find_set(b);
-    if(a != b)
+    if(a != b){
+      sets--;
       union_sets(a, b);
+    }
+    cout << sets << " " << max_set << "\n";
   }
 }
