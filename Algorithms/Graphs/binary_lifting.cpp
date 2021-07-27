@@ -4,8 +4,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int LOGN;
-vector<vector<int>> up, childs;
+int LOGN, n, m;
+vector<vector<int>> up;
 
 int kth_ancestor(int node, int k){
   for(int i = 0; i < LOGN; i++)
@@ -18,37 +18,24 @@ int kth_ancestor(int node, int k){
   return node;
 }
 
-void dfs(int x){
-  for(int v : childs[x]){
-    for(int i = 1; i < LOGN; i++)
-      up[v][i] = up[up[v][i-1]][i-1];
-
-    dfs(v);
-  }
-}
+void calculate(){
+  for(int j = 1; j < LOGN; j++)
+    for(int i = 1; i <= n; i++)
+      up[i][j] = up[up[i][j-1]][j-1]; // because 2^4 = 2^3+2^3
+} 
 
 int main(){
-  int n, m;
   cin >> n >> m;
-
-  // if this wouldn't be "+ 1",
-  // tree with height equal to n would be bugged when k = n 
   LOGN = ceil(log2(n)) + 1;
   
-  childs = vector<vector<int>>(n+1);
   up = vector<vector<int>>(n+1, vector<int>(LOGN));
   up[1][0] = 0;
 
-  for(int i = 2; i <= n; i++){ // get input
-    int parent;
-    cin >> parent;
+  for(int i = 2; i <= n; i++)
+    cin >> up[i][0];
+  
+  calculate();
 
-    up[i][0] = parent;
-    childs[parent].push_back(i);
-  }
-  
-  dfs(1); // starting at root
-  
   while(m--){
     int node, k;
     cin >> node >> k;

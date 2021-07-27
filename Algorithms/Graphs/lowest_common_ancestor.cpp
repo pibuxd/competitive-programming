@@ -20,7 +20,7 @@ void dfs(int v){ // calculating binary lifting
 
 int lca(int a, int b){
   if(depth[a] < depth[b])
-    swap(a, b);
+    swap(a, b); // depth[a] > depth[b]
   int k = depth[a] - depth[b];
 
   for(int i = 0; i < LOGN; i++)
