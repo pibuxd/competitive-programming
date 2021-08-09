@@ -1,12 +1,11 @@
+// * Segment Tree (only range min query)
 #include <bits/stdc++.h>
 using namespace std;
- 
-// segment tree
+#define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
 
 const int MXV = 1e9;
 int n, q;
-vector<int> V;
-vector<int> Tree;
+vector<int> V, Tree;
  
 void initData(){
   cin >> n >> q;
@@ -49,7 +48,8 @@ int query(int v, int l, int r, int x, int y){
   return(min(q1, q2));
 }
  
-int main(){ ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+int main(){
+  fastio;
   initData();
   buildTree(1, 1, n);
  
