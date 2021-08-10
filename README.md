@@ -1,4 +1,5 @@
 # Algorithmics stuff
+>  I'm learning from [USACO guide](https://usaco.guide/) and school
 
 ## These are my solutions from the following content
 
