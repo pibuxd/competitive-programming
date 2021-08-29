@@ -16,10 +16,8 @@ void dfs(ll v, ll p){
 
       if(M[a].size() < M[b].size())
         swap(M[a], M[b]);
-      for(auto i : M[b]){
-        if(!M[a][i.first]) M[a][i.first] = i.second;
-        else M[a][i.first] += i.second;
-      }
+      for(auto i : M[b])
+        M[a][i.first] += i.second;
     }
   }
 
@@ -28,7 +26,7 @@ void dfs(ll v, ll p){
     ans[v] += it->first;
     ll temp = it->second;
     it++;
-    if(it->second < temp)
+    if(it->second < temp || it == M[v].end())
       break;
   }
 }
