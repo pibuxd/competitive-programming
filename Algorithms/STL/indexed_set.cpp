@@ -27,7 +27,7 @@ int main(){
   cout << x.first << "\n"; // 7
 
   // returns the position of a given element
-  auto y = s.order_of_key({1, 5});
+  auto y = s.order_of_key({1, -10000});
   cout << y << "\n"; // 1
 
 }
