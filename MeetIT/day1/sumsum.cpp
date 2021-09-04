@@ -26,19 +26,22 @@ int main(){
       }
       else break;
     }
+    vector<pair<ll, ll>> to_push;
     while(!S1.empty()){
       if(p[i] > S1.top().first){
         r_high[S1.top().second] = i;
-        S2.push(S1.top());
+        to_push.push_back(S1.top());
         S1.pop();
       }
       else break;
     }
+    if(to_push.size() > 0)
+      for(ll it = to_push.size()-1; it >= 0; it--)
+        S2.push(to_push[it]);
 
     S1.push({p[i], i});
   }
 
-  
   S1 = S2 = stack<pair<ll, ll>>();
   for(ll i = n; i >= 1; i--){
     while(!S2.empty()){
@@ -48,14 +51,18 @@ int main(){
       }
       else break;
     }
+    vector<pair<ll, ll>> to_push;
     while(!S1.empty()){
       if(p[i] > S1.top().first){
         l_high[S1.top().second] = i;
-        S2.push(S1.top());
+        to_push.push_back(S1.top());
         S1.pop();
       }
       else break;
     }
+    if(to_push.size() > 0)
+      for(ll it = to_push.size()-1; it >= 0; it--)
+        S2.push(to_push[it]);
 
     S1.push({p[i], i});
   }
@@ -76,4 +83,4 @@ int main(){
   cout << ans;
 }
 // 12
-// 5 3 4 3 2 1 2 1 2 3 3 6
+// 7 5 8 11 6 9 2 3 12 1 4 10

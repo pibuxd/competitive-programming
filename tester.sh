@@ -41,10 +41,10 @@ if [[ "$1" == "help" || "$1" == "" ]]; then
 fi
 
 # compile generator with CP flags
-START=$(date +%s.%N)
+START=$(date +%s.%n)
 g++ -o generator generator.cpp ||
 { echo "generator.cpp -> ${bold}${red}compilation error${reset}"; exit 1; }
-DIFF=$(echo "$(date +%s.%N) - $START" | bc)
+DIFF=$(echo "$(date +%s.%n) - $START" | bc)
 printf "generator.cpp -> ${bold}${green}compiled${reset} in %.6f sec \n" $DIFF 
 
 if [[ "$2" == "" ]]; then
@@ -59,16 +59,16 @@ if [[ "$1" = "test" ]]; then
   # testing
 
   # compile brute and pattern with CP flags
-  START=$(date +%s.%N)
+  START=$(date +%s.%n)
   g++ -o brute brute.cpp ||
   { echo "brute.cpp -> ${bold}${red}compilation error${reset}"; exit 1; }
-  DIFF=$(echo "$(date +%s.%N) - $START" | bc)
+  DIFF=$(echo "$(date +%s.%n) - $START" | bc)
   printf "brute.cpp -> ${bold}${green}compiled${reset} in %.6f sec \n" $DIFF
 
-  START=$(date +%s.%N)
+  START=$(date +%s.%n)
   g++ -o pattern pattern.cpp || 
   { echo "pattern.cpp -> ${bold}${red}compilation error${reset}"; exit 1; }
-  DIFF=$(echo "$(date +%s.%N) - $START" | bc)
+  DIFF=$(echo "$(date +%s.%n) - $START" | bc)
   printf "pattern.cpp -> ${bold}${green}compiled${reset} in %.6f sec \n" $DIFF
 
   echo -ne "\n"
@@ -82,10 +82,10 @@ if [[ "$1" = "test" ]]; then
     echo $i > ziarno
     ./generator < ziarno > input.in
     ./brute < input.in > brute.out
-    START=$(date +%s.%N)
+    START=$(date +%s.%n)
     ./pattern < input.in > pattern.out
-    END=$(date +%s.%N)
-    DIFF=$(echo "$(date +%s.%N) - $START" | bc)
+    END=$(date +%s.%n)
+    DIFF=$(echo "$(date +%s.%n) - $START" | bc)
 
     if (( $( echo "$DIFF > $MAX_TIME" | bc) )); then
       MAX_TIME=$DIFF

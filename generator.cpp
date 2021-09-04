@@ -31,19 +31,17 @@ int main(){
   fastio;
   init_Seed();
 
-  int n = 3;
+  int n = 12;
   cout << n << "\n";
-  string s;
 
-  s = random_string(15);
-  s += s + s;
-  cout << s << "\n";
+  vector<bool> p(n+1);
 
-  s = random_string(20);
-  s += s + s;
-  cout << s << "\n";
-
-  s = random_string(10);
-  s += random_string(11) + s + s;
-  cout << s << "\n";
+  for(int i = 1; i <= n; i++){
+    int x = random_number(i, n);
+    while(p[x]){
+      x = random_number(1, n);
+    }
+    p[x] = true;
+    cout << x << " ";
+  } 
 }
