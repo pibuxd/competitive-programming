@@ -63,7 +63,7 @@ bool check(int val){
   
   for(int i = 0; i <= val; i++){
     if(low[2*i] == low[2*i+1]){
-      cout << "I: " << i << " = " << low[2*i] << ", " << low[2*i+1];
+      cout << "I: " << i << " " << low[2*i] << ", " << low[2*i+1];
       return false;
     }
   }
