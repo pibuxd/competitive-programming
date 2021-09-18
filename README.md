@@ -24,7 +24,7 @@ solutions from my high school "PIWO" problems
 - ***[Satori](https://satori.tcs.uj.edu.pl/)***
 solutions from my high school and Jagiellonian University contests
 
-- ***[Szkola](https://szkopul.edu.pl/)***
+- ***[School](https://szkopul.edu.pl/)***
 stuff from my high school
 
 - ***[WSI](https://solve.edu.pl/~sparingi/tasks)***
