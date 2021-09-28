@@ -60,8 +60,8 @@ void update(int it, int val){
   if(edge[1] == par[edge[0]][0])
     swap(edge[0], edge[1]); // first is parent of second
 
-  for(auto i : M){
-    if(pre[i.first] <= pre[edge[1]] && post[i.first] >= post[edge[1]]){
+  for(auto &i : M){
+    if(pre[i.first] >= pre[edge[1]] && post[i.first] <= post[edge[1]]){
       M[i.first][par[edge[1]][1]]--;
       if(M[i.first][par[edge[1]][1]] == 0) diffs[i.first]--;
 
@@ -76,7 +76,7 @@ void update(int it, int val){
 int main(){
   fastio;
   cin >> n >> m >> z;
-  W = sqrt((double)n);
+  W = 316;
   in.resize(n+1);
   G.resize(n+1);
   dep.resize(n+1);
