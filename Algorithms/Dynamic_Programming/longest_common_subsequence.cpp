@@ -27,17 +27,6 @@ string lcs(string a, string b){
       j--;
     }
   }
-
-  /*
-  cout << "\n";
-  for(int i = 0; i <= as; i++){
-    for(int j = 0; j <= bs; j++){
-      cout << dp[i][j] << " ";
-    }
-    cout << "\n";
-  }
-  cout << "\n";
-  */
  
   reverse(ans.begin(), ans.end());
   return ans;
