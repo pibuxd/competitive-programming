@@ -18,7 +18,7 @@ string lcs(string a, string b){
 
   int i = as, j = bs;
   while(i > 0 && j > 0){
-    if(dp[i-1][j] == dp[i][j-1]){
+    if(dp[i-1][j] == dp[i][j-1] && dp[i][j] == dp[i-1][j-1]+1){
       ans += a[i-1];
       i--, j--;
     } else if(dp[i-1][j] > dp[i][j-1]){
@@ -35,6 +35,8 @@ string lcs(string a, string b){
 int main(){
   string a, b;
   cin >> a >> b;
-
-  cout << lcs(a, b) << "\n";
+  
+  string ans = lcs(a, b);
+  cout << ans.length() << "\n";
+  cout << ans;
 }
