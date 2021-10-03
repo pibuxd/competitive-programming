@@ -12,8 +12,8 @@ solutions from "Codeforces"
 - ***[CSES](https://cses.fi/problemset/list/)***
 solutions from CSES, Finnish platform with problems
 
-- ***[OI_archive](https://szkopul.edu.pl/p/default/problemset/oi)***
-solutions from the Polish Computing Olympiad
+- ***[POI](https://szkopul.edu.pl/p/default/problemset/oi)***
+solutions from the Polish Olympiad in Informatics and OTHER polish contests/tournaments
 
 - ***[PA](https://potyczki.mimuw.edu.pl/)***
 solutions from the Polish contest "Potyczki Algorytmiczne"
@@ -31,7 +31,7 @@ stuff from my high school
 solutions from "Wrocławskie Sparingi Informatyczne"
 
 - ***Other***
-other contests
+other not polish contests
 
 ## Testing
 
