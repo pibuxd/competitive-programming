@@ -16,9 +16,11 @@ void dfs(int v){
   ids[v] = low[v] = id++;
 
   for(int x : G[v]){
-    if(!ids[x])
+    if(!ids[x]){
       dfs(x);
-    if(on_st[x])
+      low[v] = min(low[v], low[x]);
+    }
+    else if(on_st[x])
       low[v] = min(low[v], low[x]);
   }
 
@@ -26,7 +28,7 @@ void dfs(int v){
     for(int node = st.top();; node = st.top()){
       st.pop();
       on_st[node] = false;
-      low[node] = ids[v];
+      low[node] = low[v];
       if(node == v)
         break;
     }
@@ -59,6 +61,7 @@ int main(){
   
   /*
   example input:
+  5 6
   1 2
   2 3
   3 1
