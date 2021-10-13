@@ -21,20 +21,27 @@ void compress(int v){
 
 array<int, 2> find_set(int v){
   compress(v);
-  return par[v];
+  if(par[v][0] == v) return par[v];
+  return find_set(par[v][0]);
 }
 
-void make_set(int a, int b, int w){
+void union_sets(int a, int b, int w){
   array<int, 2> sa = find_set(a);
   array<int, 2> sb = find_set(b);
 
   if(sa[0] == sb[0]) return;
 
-  par[b][0] = par[a][0];
+  cout << "b: " << b << " " << par[b][0] << " = " << a << " a: " << a << "\n";
+  par[sb[0]][0] = sa[0];
+  par[b][1] = w + par[a][1] - par[b][1];
 }
 
 void solve(){
   par.assign(n+1, array<int, 2>());
+  
+  for(int i = 1; i <= n; i++)
+    make_set(i);
+
   while(m--){
     char c;
     int a, b;
@@ -42,7 +49,7 @@ void solve(){
     if(c == '!'){
       int w;
       cin >> w;
-      make_set(a, b, w);
+      union_sets(a, b, w);
     }
     else{
       array<int, 2> fa = find_set(a);
@@ -52,7 +59,7 @@ void solve(){
         cout << "UNKNOWN\n";
         continue;
       }
-      cout << fb[1] - fa[1];
+      cout << par[b][1] - par[a][1] << "\n";
     }
   }
 
