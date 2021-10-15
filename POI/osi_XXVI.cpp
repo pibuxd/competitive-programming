@@ -1,151 +1,114 @@
 #include <bits/stdc++.h>
-using namespace std;
-// find bridges
 
+using namespace std;
 #define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
 
-struct hashPair { 
-  template <class T1, class T2> 
-  size_t operator()(const pair<T1, T2>& p) const
-  { 
-    auto hash1 = hash<T1>{}(p.first); 
-    auto hash2 = hash<T2>{}(p.second); 
-    return hash1 ^ hash2; 
-  } 
-};
-
-struct SCC {
-  int N, id, osiedlaCounter;
-  vector<vector<int>> G;
-  vector<int> low, tin;
-  vector<bool> visited;
-  vector<pair<int, int>> input;
-  unordered_map<pair<int, int>, char, hashPair> edge;
-
-  void init(int _N){
-    N = _N;
-    osiedlaCounter = 0;
-    G = vector<vector<int>>(N+1);
-    low = tin = vector<int>(N+1);
-    visited = vector<bool>(N+1);
-  }
-
-  void push(int a, int b){
-    if(!edge[{a, b}]){ // undefine direction
-      edge[{a, b}] = '|';
-      input.push_back({a, b});
-      G[a].push_back(b);
-      G[b].push_back(a);
-    } else{
-      edge[{b, a}] = '|';
-      input.push_back({b, a});
-    }
-  }
-
-  void dfs2(int x, int p = -1){
-    visited[x] = true; 
-
-    for(int v : G[x]){
-      //cout << x << "->" << v << ' ';
-
-      if(edge[{x, v}] && edge[{v, x}]){
-        if(edge[{x, v}] == '|' && edge[{v, x}] == '|'){
-          edge[{x, v}] = '>';
-          dfs2(v);
-
-        } else if(edge[{x, v}] == '|' && edge[{v, x}] != '|'){
-          if(edge[{v, x}] == '>'){
-            edge[{x, v}] = '<';
-
-          } else{
-            edge[{x, v}] = '>';
-
-          }
-          dfs2(v);
-        } else if(edge[{x, v}] != '|' && edge[{v, x}] == '|'){
-          if(edge[{x, v}] == '>'){
-            edge[{v, x}] = '<';
-
-          } else{
-            edge[{v, x}] = '>';
-
-          }
-          dfs2(v);
-        }
-      } else if(edge[{x, v}] == '|'){
-        edge[{x, v}] = '>';
-        dfs2(v); 
-
-      } else if(edge[{v, x}] == '|'){
-        edge[{v, x}] = '<';
-        dfs2(v);
-      }
-      
-      //else cout << "x ";
-    }
-  }
-
-  void dfs(int x, int p = 0){
-    visited[x] = true;
-    tin[x] = low[x] = id++;
-
-    for(int v : G[x]){
-      if(v == p){
-        continue;
-      }
-      if(visited[v]){
-        low[x] = min(low[x], low[v]);
-      } else{
-        dfs(v, x);
-        low[x] = min(low[x], low[v]);
-        
-        if(low[v] > tin[x] && !(edge[{x, v}] && edge[{v, x}])){
-          osiedlaCounter += 2;
-          dfs2(v, x);
-          dfs2(x, v);
-        }
-      }
-    }
-  }
-
-  void findBridges(){
-    id = 1;
-
-    for(int i = 1; i <= N; i++){
-      if(!visited[i]){
-        dfs(i);
-      }
-    }
-  }
-
-  void print(){
-    /*cout << '\n';
-    for(int i = 1; i <= N; i++){
-      cout << low[i] << ' ';
-    }
-    cout << "\n\n";*/
-
-    cout << osiedlaCounter << '\n';
-
-    for(auto x : input){
-      cout << edge[{x.first, x.second}];
-    }
+struct hash_pair{
+  size_t operator()(const pair<int, int>& p) const{
+    auto hash1 = hash<int>{}(p.first);
+    auto hash2 = hash<int>{}(p.second);
+    return hash1 ^ hash2;
   }
 };
+
+int n, m, id, counter;
+vector<vector<int>> __G, G;
+vector<int> low, ids;
+vector<pair<int, int>> in;
+vector<bool> vis, on_st;
+stack<int> st;
+unordered_set<pair<int, int>, hash_pair> edges, _in;
+
+void dfs(int v, int p){
+  vis[v] = true;
+  bool v_doubled = false;
+
+  for(int x : __G[v]){
+    if(x == p && !v_doubled) continue;
+
+    if(!v_doubled){
+      G[v].push_back(x);
+      edges.insert(pair<int, int>({v, x}));
+    }
+    else{
+      G[x].push_back(v);
+      edges.insert(pair<int, int>({x, v}));
+    }
+    v_doubled = true;
+
+    if(!vis[x]){
+      dfs(x, v);
+    }
+  }
+}
+
+void scc(int v){
+  st.push(v);
+  on_st[v] = true;
+  ids[v] = low[v] = id++;
+
+  for(int x : G[v]){
+    if(!ids[x]){
+      scc(x);
+      low[v] = min(low[v], low[x]);
+    }
+    else if(on_st[x]){
+      low[v] = min(low[v], low[x]);
+    }
+  }
+
+  if(low[v] == ids[v]){
+    counter++;
+    for(int node = st.top();; node = st.top()){
+      st.pop();
+      on_st[node] = false;
+      low[node] = low[v];
+      if(node == v)
+        break; 
+    }
+  }
+}
 
 int main(){
   fastio;
-  int n, m, a, b;
   cin >> n >> m;
+  in.resize(m+1);
+  __G.resize(n+1);
+  G.resize(n+1);
+  vis.resize(n+1, false);
 
-  SCC graph;
-  graph.init(n);
+  for(int i = 1; i <= m; i++){
+    int a, b; cin >> a >> b;
+    __G[a].push_back(b);
+    __G[b].push_back(a);
 
-  while(m--){
-    cin >> a >> b;
-    graph.push(a, b);
+    in[i] = {a, b};
   }
 
-  graph.findBridges();
-  graph.print();
+  for(int i = 1; i <= n; i++)
+    if(!vis[i])
+      dfs(i, 0);
+
+  low.resize(n+1);  
+  ids.resize(n+1);
+  id = 0;
+  counter = 0;
+
+  for(int i = 1; i <= n; i++){
+    if(!ids[i]){
+      st = stack<int>();
+      on_st.assign(n+1, false);
+      scc(i);
+    }
+  }
+
+  cout << counter << "\n";
+
+  for(int i = 1; i <= m; i++){
+    if(edges.count(in[i]) && !_in.count(in[i]))
+      cout << '>';
+    else
+      cout << '<'; 
+    _in.insert(in[i]);
+  }
 }
