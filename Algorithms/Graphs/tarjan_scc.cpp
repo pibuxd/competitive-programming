@@ -59,14 +59,14 @@ int main(){
   for(int i = 1; i <= n; i++)
     cout << i << ": " << low[i] << "\n";
   
-  /*
-  example input:
-  5 6
-  1 2
-  2 3
-  3 1
-  3 4
-  4 5
-  5 4
-  */
+/*
+example input:
+5 6
+1 2
+2 3
+3 1
+3 4
+4 5
+5 4
+*/
 }
