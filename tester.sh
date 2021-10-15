@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 # tester for competetive programming (CP)
 
 # color variables
