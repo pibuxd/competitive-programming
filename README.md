@@ -40,4 +40,4 @@ other not polish contests
 + ***brute.cpp*** - the brute solution which checks if the pattern is correct
 + ***tester.sh*** - script that manages the pattern testing process
 + ***tester-portable.sh*** - simple and portable script for the pattern testing process
-+ ***tester-pa.sh*** - simple script for testing packages of tests
++ ***tester-pack.sh*** - simple script for testing packages of tests
