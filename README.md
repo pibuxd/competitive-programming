@@ -38,5 +38,6 @@ other not polish contests
 + ***pattern.cpp*** - the solution that is checked if it is correct
 + ***generator.cpp*** - creates random input for task
 + ***brute.cpp*** - the brute solution which checks if the pattern is correct
-+ ***tester.sh*** - a bash script that manages the pattern testing process
-+ ***tester-portable.sh*** - very simple bash script that manages the pattern testing process
++ ***tester.sh*** - script that manages the pattern testing process
++ ***tester-portable.sh*** - simple and portable script for the pattern testing process
++ ***tester-pa.sh*** - simple script for testing packages of tests
