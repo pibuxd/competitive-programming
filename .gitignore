@@ -2,7 +2,4 @@
 .vs/
 .vscode/
 .history/
-
-# binary files
-# find . -type f -executable -exec sh -c "file -i '{}' | grep -q '.bin'" \; -print | xargs rm -f
-*.bin
+.DS_Store
