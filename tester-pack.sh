@@ -3,13 +3,14 @@
 
 name=$1
 tests_dir=$2
+prefix=${3:-}
 
 g++ -O3 -Wall -Wextra -o $name $name.cpp
-printf "compiled\n"
+printf "compiled\nfile=${name}.cpp, testing directory=${tests_dir}, prefix=${prefix}\n"
 
 for ((i = 25; i <= 999; i++)); do
-  nameout="${tests_dir}/out/${name}${i}.out"
-  namein="${tests_dir}/in/${name}${i}.in"
+  nameout="${tests_dir}/out/${prefix}${i}.out"
+  namein="${tests_dir}/in/${prefix}${i}.in"
 
   if [ ! -f $nameout ]; then
     continue
