@@ -1,5 +1,6 @@
 // * sort with custom comparator
-
+// if size of two strings is equal -> sort lexicographically
+// else -> sort strings ascending by size
 #include <bits/stdc++.h>
 using namespace std;
 
