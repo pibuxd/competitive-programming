@@ -7,8 +7,8 @@ g++ -O3 -Wall -Wextra -o pattern pattern.cpp
 printf "compiled\n"
 
 for ((i = $1; i <= $2; i++)); do
-  echo $i > ziarno
-  ./generator < ziarno > input.in
+  echo $i > ziarno.temp
+  ./generator < ziarno.temp > input.in
   ./brute < input.in > brute.out
   ./pattern < input.in > pattern.out
 
@@ -23,4 +23,4 @@ done
 
 printf "\n"
 
-rm -f ziarno input.in pattern.out brute.out brute pattern generator
+rm -f ziarno.temp input.in pattern.out brute.out brute pattern generator
