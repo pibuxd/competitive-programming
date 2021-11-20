@@ -80,7 +80,7 @@ int main(){
   cout << ans.size() << "\n";
   for(auto a : ans){
     cout << a[1]+1 << " " << l << "\n";
-    //if(l + in[a[1]][0] - 1 > in[a[1]][1]) {cout << "NOO"; break;}
+    // if(l + in[a[1]][0] - 1 > in[a[1]][1]) {cout << "NOO"; break;}
     l += in[a[1]][0];
   }
 }

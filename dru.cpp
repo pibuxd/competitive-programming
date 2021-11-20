@@ -45,77 +45,57 @@ void ans_dla_1(){
   print_ans(dziel);
 }
 
-bool visit_down(const string &s, int dlg, int y, int x){
-  int starty = y;
-  int endy = starty + dlg-1;
-
-  if(endy > n)
-    return false;
-
-  while(y <= endy){
-    if(t[y][x] != s[y-starty] || vis[y][x]){
-      y = starty;
-      return false;
-    }
-    y++;
-  }
-
-  for(int i = starty; i <= endy; i++)
-    vis[i][x] = true;
-
-  y = endy;
-  return true;
-}
-
-bool visit_right(const string &s, int dlg, int y, int x){
-  int startx = x;
-  int endx = startx + dlg-1;
-  
-  if(endx > m)
-    return false;
-
-  while(x <= endx){
-    if(t[y][x] != s[x-startx] || vis[y][x]){
-      x = startx;
-      return false;
-    }
-    x++;
-  }
-
-  for(int i = startx; i <= endx; i++)
-    vis[y][i] = true;
-
-  x = endx;
-  return true;
-}
-
-void skip_down(int &y, int &x){
-  while(y <= n && vis[y][x])
-    y++;
-}
-
-void go_right(int &y, int &x){
-  y = 1, x++;
-  skip_down(y, x);
-}
-
 bool check(const string &s, int dlg, int y, int x){
-  // cout << "y = " << y << ", x = " << x << "\n";
-  skip_down(y, x);
+  while(true){
+    while(y <= n && vis[y][x])
+      y++;
 
-  if(y-1 == n && x == m)
-    return true;
-  else if(y-1 == n && x < m){
-    go_right(y, x);
-    return check(s, dlg, y, x);
+    if(y == n+1 && x == m)
+      return true;
+    if(y == n+1 && x < m){
+      y = 1, x++;
+      continue;
+    }
+
+    int starty = y;
+    int endy = y + dlg-1;
+    if(endy > n)
+      goto down;
+
+    while(y <= endy){
+      if(t[y][x] != s[y-starty] || vis[y][x] == true){
+        y = starty;
+        goto down;
+      }
+      y++;
+    }  
+
+    for(int i = starty; i <= endy; i++)
+      vis[i][x] = true;
+    continue;
+
+    down:
+    int startx = x;
+    int endx = x + dlg-1;
+    if(endx > m)
+      return false;
+
+    while(x <= endx){
+      if(t[y][x] != s[x-startx] || vis[y][x] == true){
+        x = startx;
+        return false;
+      }
+      x++;    
+    }
+
+    for(int i = startx; i <= endx; i++)
+      vis[y][i] = true;
+
+    x = startx;
+    y++;
   }
 
-  if(visit_down(s, dlg, y, x))
-    return check(s, dlg, y + dlg-1 + 1, x);  
-  else if(visit_right(s, dlg, y, x))
-    return check(s, dlg, y+1, x);
-  
-  return false;
+  return true;
 }
 
 bool _check(const string &s, int dlg){
@@ -136,7 +116,7 @@ int main(){
       if(!__is_litera[t[i][j] - 'a']) 
         __ile_liter++, __is_litera[t[i][j] - 'a'] = true;
     }
-    
+  
   if(__ile_liter == 1){
     ans_dla_1();
     return 0;
@@ -149,7 +129,7 @@ int main(){
   string sample = "";
   for(int i = 1; i <= n; i++){
     sample += t[i][1];
-    if(!is_litera[t[i][1] - 'a']) 
+    if(!is_litera[t[i][1] - 'a'])
       ile_liter++, is_litera[t[i][1] - 'a'] = true;
     if(t[i][1] == litera_koncowa && ile_liter == __ile_liter && (n % i == 0 || m % i == 0) && _check(sample, i))
       ans.push_back(i);
@@ -165,9 +145,6 @@ int main(){
     if(t[1][i] == litera_koncowa && ile_liter == __ile_liter && (n % i == 0 || m % i == 0) && _check(sample, i))
       ans.push_back(i);
   }
-
+    
   print_ans(ans);
-  // cout << ans.size() << "\n";
-  // for(int a : ans) cout << a << "\n";
-  // cout << _check("ca", 2) << "\n";
 }

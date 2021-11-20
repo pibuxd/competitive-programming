@@ -102,14 +102,14 @@ void solve(){
 }
 
 int main(){
-  // fastio;
+  fastio;
   fibonacci();
 
-  // solve();
-  for(ll i = 1, r = 0; i <= 1000000000; i++){
-    r ^= test(i);
-    if(i % 50000000 == 0)
-      cout << "1 to " << i << ": " << r << "\n";
-  }
+  solve();
+  // for(ll i = 1, r = 0; i <= 1000000000; i++){
+  //   r ^= test(i);
+  //   if(i % 50000000 == 0)
+  //     cout << "1 to " << i << ": " << r << "\n";
+  // }
   // test_file();
 }
