@@ -1,10 +1,14 @@
 // * Lazy Propagation Segment Tree
 // * range SET update
-// * range INCREASE update
+// * range ADD update
 // * range SUM query
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
+
+#define m (l+r)/2 // mid
+#define lv 2*v // left vertex
+#define rv 2*v+1 // right vertex
 
 struct Node {
   ll val = 0, lz_add = 0, lz_set = 0;
@@ -15,45 +19,43 @@ vector<Node> tree;
 vector<ll> a;
 
 void push_down(int v, int l, int r){
-  int m = (l+r)/2;
-
   if(tree[v].lz_set != 0){ // range set
-    tree[2*v].lz_set = tree[2*v+1].lz_set = tree[v].lz_set;
-    tree[2*v].val = (m-l+1) * tree[v].lz_set;
-    tree[2*v+1].val = (r-(m+1)+1) * tree[v].lz_set;
-    tree[2*v].lz_add = tree[2*v+1].lz_add = 0;
+    tree[lv].lz_set = tree[rv].lz_set = tree[v].lz_set;
+    tree[lv].val = (m-l+1) * tree[v].lz_set;
+    tree[rv].val = (r-(m+1)+1) * tree[v].lz_set;
+    tree[lv].lz_add = tree[rv].lz_add = 0;
     tree[v].lz_set = 0;
   }
   else if(tree[v].lz_add != 0){ // range add
-    if(tree[2*v].lz_set == 0)
-      tree[2*v].lz_add += tree[v].lz_add;
+    if(tree[lv].lz_set == 0)
+      tree[lv].lz_add += tree[v].lz_add;
     else{
-      tree[2*v].lz_set += tree[v].lz_add;
-      tree[2*v].lz_add = 0;
+      tree[lv].lz_set += tree[v].lz_add;
+      tree[lv].lz_add = 0;
     }
 
-    if(tree[2*v+1].lz_set == 0)
-      tree[2*v+1].lz_add += tree[v].lz_add;
+    if(tree[rv].lz_set == 0)
+      tree[rv].lz_add += tree[v].lz_add;
     else{
-      tree[2*v+1].lz_set += tree[v].lz_add;
-      tree[2*v+1].lz_add = 0;
+      tree[rv].lz_set += tree[v].lz_add;
+      tree[rv].lz_add = 0;
     }
 
-    tree[2*v].val += (m-l+1) * tree[v].lz_add;
-    tree[2*v+1].val += (r-(m+1)+1) * tree[v].lz_add;
+    tree[lv].val += (m-l+1) * tree[v].lz_add;
+    tree[rv].val += (r-(m+1)+1) * tree[v].lz_add;
     tree[v].lz_add = 0;
   }
 }
 
-void build(int v = 1, int l = 1, int r = n){
+void build(int v, int l, int r){
   if(l == r){
     tree[v].val = a[l];
     return;
   }
-  int m = (l+r)/2;
-  build(2*v, l, m);
-  build(2*v+1, m+1, r);
-  tree[v].val = tree[2*v].val + tree[2*v+1].val;
+
+  build(lv, l, m);
+  build(rv, m+1, r);
+  tree[v].val = tree[lv].val + tree[rv].val;
 }
 
 void add(int v, int l, int r, int a, int b, ll x){
@@ -68,11 +70,10 @@ void add(int v, int l, int r, int a, int b, ll x){
     return;
   }
 
-  int m = (l+r)/2;
   push_down(v, l, r);
-  add(2*v, l, m, a, b, x);
-  add(2*v+1, m+1, r, a, b, x);
-  tree[v].val = tree[2*v].val + tree[2*v+1].val;
+  add(lv, l, m, a, b, x);
+  add(rv, m+1, r, a, b, x);
+  tree[v].val = tree[lv].val + tree[rv].val;
 }
 
 void _set(int v, int l, int r, int a, int b, ll x){
@@ -85,11 +86,10 @@ void _set(int v, int l, int r, int a, int b, ll x){
     return;
   }
 
-  int m = (l+r)/2;
   push_down(v, l, r);
-  _set(2*v, l, m, a, b, x);
-  _set(2*v+1, m+1, r, a, b, x);
-  tree[v].val = tree[2*v].val + tree[2*v+1].val;
+  _set(lv, l, m, a, b, x);
+  _set(rv, m+1, r, a, b, x);
+  tree[v].val = tree[lv].val + tree[rv].val;
 }
 
 ll sum(int v, int l, int r, int a, int b){
@@ -98,9 +98,8 @@ ll sum(int v, int l, int r, int a, int b){
   if(a <= l && r <= b)
     return tree[v].val;
   
-  int m = (l+r)/2;
   push_down(v, l, r);
-  return sum(2*v, l, m, a, b) + sum(2*v+1, m+1, r, a, b);
+  return sum(lv, l, m, a, b) + sum(rv, m+1, r, a, b);
 }
 
 int main(){
@@ -110,7 +109,7 @@ int main(){
 
   for(int i = 1; i <= n; i++) 
     cin >> a[i];
-  build();
+  build(1, 1, n);
 
   while(q--){
     int op, a, b, x;
