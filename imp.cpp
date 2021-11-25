@@ -33,6 +33,8 @@ ll solve(){
 
   vis[h[1]] = 1, vis[h[2]] = 2;
 
+  if(h[1] == h[2]) return 0;
+  
   for(int i = 3; i <= n; i++){
     if(!vis[h[i]]){
       vis[h[i]] = i;
