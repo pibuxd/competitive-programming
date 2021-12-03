@@ -1,92 +1,83 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+#define mid ((l+r)/2)
+#define lc (2*v)
+#define rc (2*v+1)
+#define dlg(l, r) (r-l+1)
 
-struct Maszt {
-  int s = 0, a = 0;
+struct Node {
+  int sum = 0, ls = 0, la = 0;
 };
 
-struct Tree {
-  int n;
-  vector<int> maszty, tree;
+int n, m;
+vector<Node> t;
+vector<pair<int, int>> maszty;
 
-  Tree(int _n){
-    n = _n;
-    maszty.resize(n+1);
-    tree.resize(2*n+5);
+void push_down(int v, int l, int r){
+  t[lc].ls = t[rc].ls = t[v].ls;
+  t[lc].la = t[rc].la = t[v].la;
+  t[lc].sum = ( (2*t[lc].ls + (dlg(l, mid) - 1) * t[lc].la) * dlg(l, mid) ) / 2;
+  t[rc].sum = ( (2*t[rc].ls + (dlg(mid+1, r) - 1) * t[rc].la) * dlg(mid+1, r) ) / 2;
+}
+
+void push_up(int v){
+  t[v].sum = t[lc].sum + t[rc].sum;
+}
+
+void update(int v, int l, int r, int a, int b, int S, int A, int op){
+  if(l > b || r < a)
+    return;
+  if(a <= l && r <= b){
+    t[v].ls += S * op;
+    t[v].la += A * op;
+    t[v].sum = ( (2*t[v].ls + (dlg(l, r) - 1) * t[v].la) * dlg(l, r) ) / 2;
+    return;
   }
 
-  void insert(int v, int l, int r, int idx, int val){
-    if(idx < l || idx > r){
-      return;
-    }
-  
-    if(l == r){
-      maszty[idx] = val;
-      tree[v] = val;
-    
-    } else{
-      int mid = (l + r) / 2;
-      insert(2*v, l, mid, idx, val);
-      insert(2*v+1, mid+1, r, idx, val);
-  
-      tree[v] = tree[2*v] + tree[2*v+1];
-    }
-  }
+  push_down(v, l, r);
+  update(lc, l, mid, a, b, S, A, op);
+  update(rc, mid+1, r, a, b, S+A*((mid+1)-l), A, op);
+  push_up(v);
+}
 
-  int query(int v, int l, int r, int x, int y){
-    if(x > r || l > y){
-      return 0;
-    }
-    if(x <= l && y >= r){
-      return tree[v];
-    }
+int query(int v, int l, int r, int a, int b){
+  if(l > b || r < a)
+    return 0;
+  if(a <= l && r <= b)
+    return t[v].sum;
   
-    int mid;
-    mid = (l + r) / 2;
-    int q1, q2;
-    q1 = query(2*v, l, mid, x, y);
-    q2 = query(2*v+1, mid+1, r, x, y);
-  
-    return(q1 + q2);
-  }
-};
+  push_down(v, l, r);
+  return query(lc, l, mid, a, b) + query(rc, mid+1, r, a, b);
+}
 
 int main(){
   fastio;
-  int n, m, x, s, a, x1, x2; // x1 <= x2
-  char operation;
   cin >> n >> m;
-
-  Tree tree(n);
-  vector<Maszt> maszty(n+1);
+  t.resize(4*(n+1));
+  maszty.resize(n+1);
 
   while(m--){
-    cin >> operation;
-
-    if(operation == 'P'){
-      cin >> x >> s >> a;
+    char op; cin >> op;
+    if(op == 'P'){
+      int x, s, a; cin >> x >> s >> a;
+      int l = max(1, x-(int)(ceil((float)s / (float)a))+1);
+      int r = min(n, x+(int)(ceil((float)s / (float)a))-1);
+      update(1, 1, n, l, x, a, a, 1);
+      update(1, 1, n, x+1, r, s - a, -a, 1);
       maszty[x] = {s, a};
 
-      for(int i = x; i <= n; i++){
-        if(s <= (i-x) * a) break;
+    } else if(op == 'U'){
+      int x; cin >> x; int s = maszty[x].first, a = maszty[x].second;
+      int l = max(1, x-(int)(ceil((float)s / (float)a))+1);
+      int r = min(n, x+(int)(ceil((float)s / (float)a))-1);
+      update(1, 1, n, l, x, a, a, -1);
+      update(1, 1, n, x+1, r, s-a, -a, -1);
+      maszty[x] = {0, 0};
 
-        tree.insert(1, 1, n, i, s-(i-x)*a);
-      }
-
-      for(int i = x-1; i > 0; i--){
-        if(s <= (x-i) * a) break;
-
-        tree.insert(1, 1, n, i, s-(x-i)*a);
-      } 
-    } else if(operation == 'U'){
-      cin >> x;
-
-    } else{ // Z
-      cin >> x1 >> x2;
-
-      int sum = tree.query(1, 1, n, x1, x2);
-      cout << sum / (x2-x1+1) << '\n';
+    } else if(op == 'Z'){
+      int a, b; cin >> a >> b;
+      cout << query(1, 1, n, a, b) << "\n";
     }
   }
 }
