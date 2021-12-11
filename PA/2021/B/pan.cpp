@@ -35,11 +35,11 @@ int solve(){
 
   int nr_ruchu = 0;
   for(auto t : czasy){
-    // cout << nr_ruchu << ": " << "{ " << t[0] << " , " << t[1] << " , " << t[2] << " } --> before: " << wypelnione << " after: ";
+    cout << nr_ruchu << ": " << "{ " << t[0] << " , " << t[1] << " , " << t[2] << " } --> before: " << wypelnione << " after: ";
 
     if(nr_ruchu >= t[0]){
       wypelnione += t[2];
-      // cout << wypelnione << "\n";
+      cout << wypelnione << "\n";
       continue;
     }
     else
@@ -57,7 +57,7 @@ int solve(){
     } else{
         nr_ruchu++;
     }
-    // cout << wypelnione << "\n";
+    cout << wypelnione << "\n";
   }
 
   return wypelnione;
