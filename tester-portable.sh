@@ -1,9 +1,9 @@
 #!/bin/bash
 # portable tester for competetive programming (CP)
 
-g++ -O3 -Wall -Wextra -o generator generator.cpp
-g++ -O3 -Wall -Wextra -o brute brute.cpp
-g++ -O3 -Wall -Wextra -o pattern pattern.cpp
+g++ -O3 -o generator generator.cpp
+g++ -O3 -o brute brute.cpp
+g++ -O3 -o pattern pattern.cpp
 printf "compiled\n"
 
 for ((i = $1; i <= $2; i++)); do
@@ -16,7 +16,7 @@ for ((i = $1; i <= $2; i++)); do
     printf "test: $i OK \r"
   else
     printf "test: $i ERROR"
-    break
+    # break
   fi
 
 done
