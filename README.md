@@ -1,10 +1,13 @@
 # Algorithmics stuff
->  I'm learning from [USACO guide](https://usaco.guide/) and school
+>  favourite sources [USACO guide](https://usaco.guide/) and [cp-algorithms](https://cp-algorithms.com/)
 
 ## These are my solutions from the following content
 
 - ***Algorithms***
 ready-made algorithms
+
+- ***[ATCODER](https://atcoder.jp/)***
+solutions from "AtCoder"
 
 - ***[CFORC](https://codeforces.com/)***
 solutions from "Codeforces"
@@ -31,7 +34,7 @@ stuff from my high school
 solutions from "Wrocławskie Sparingi Informatyczne"
 
 - ***Other***
-other not polish contests
+other contests
 
 ## Testing
 
