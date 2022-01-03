@@ -8,7 +8,7 @@ int ran_int(int a, int b){
   return a + rand()%(b - a + 1);
 }
 
-// @return random string from the english alphabet
+// @return random string
 string ran_str(int n, int len){
   string ran = "";
   for(int i = 0; i < n; i++) 
