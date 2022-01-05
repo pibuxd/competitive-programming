@@ -17,6 +17,14 @@ string ran_str(int n, int len){
   return ran;
 }
 
+// @return random vector with int in the range of (a, b)
+vector<int> ran_vec(int n, int a, int b){
+  vector<int> ran(n, 0);
+  generate(ran.begin(), ran.end(), [a, b](){ return ran_int(a, b); });
+
+  return ran;
+}
+
 void init_Seed(){
   int seed;
   cin >> seed;
@@ -27,8 +35,14 @@ int main(){
   fastio;
   init_Seed();
 
+  vector<int> v = ran_vec(3, 4, 9);
   int x = ran_int(5, 10);
   string s = ran_str(6, 3);
-  
-  cout << x << "\n" << s;
+
+  for(int i : v)
+    cout << i << " ";
+  cout << "\n";
+
+  cout << x << "\n"; 
+  cout << s << "\n";
 }
