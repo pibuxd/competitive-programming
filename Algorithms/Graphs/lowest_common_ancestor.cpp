@@ -11,7 +11,7 @@ vector<vector<int>> up, childs;
 void dfs(int v){ // calculating binary lifting
   for(int x : childs[v]){
     depth[x] = depth[v] + 1;
-    for(int i = 1; i < LOGN; i++)
+    for(int i = 1; i <= LOGN; i++)
       up[x][i] = up[up[x][i-1]][i-1];
 
     dfs(x);
@@ -23,14 +23,14 @@ int lca(int a, int b){
     swap(a, b); // depth[a] > depth[b]
   int k = depth[a] - depth[b];
 
-  for(int i = 0; i < LOGN; i++)
+  for(int i = 0; i <= LOGN; i++)
     if((k >> i) & 1)
       a = up[a][i];
 
   if(a == b)
     return a;
 
-  for(int i = LOGN - 1; i >= 0; i--)
+  for(int i = LOGN; i >= 0; i--)
     if(up[a][i] != up[b][i])
       a = up[a][i], b = up[b][i];
 
@@ -43,11 +43,11 @@ int main(){
 
   // if this wouldn't be "+ 1",
   // tree with height equal to n would be bugged when k = n 
-  LOGN = ceil(log2(n)) + 1;
+  LOGN = ceil(log2(n));
   
   depth = vector<int>(n+1);
   childs = vector<vector<int>>(n+1);
-  up = vector<vector<int>>(n+1, vector<int>(LOGN));
+  up = vector<vector<int>>(n+1, vector<int>(LOGN+1));
   up[1][0] = 0;
 
   for(int i = 2; i <= n; i++){ // get input
