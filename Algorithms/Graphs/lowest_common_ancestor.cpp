@@ -30,12 +30,9 @@ int lca(int a, int b){
   if(a == b)
     return a;
 
-  for(int i = LOGN - 1; i >= 0; i--){
-    if(up[a][i] != up[b][i]){
-      a = up[a][i];
-      b = up[b][i];
-    }
-  }
+  for(int i = LOGN - 1; i >= 0; i--)
+    if(up[a][i] != up[b][i])
+      a = up[a][i], b = up[b][i];
 
   return up[a][0];
 }
