@@ -1,3 +1,4 @@
+// * LCA + dijkstra + RMQ
 #include <bits/stdc++.h>
 using namespace std;
 #define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
@@ -7,8 +8,8 @@ using namespace std;
 #define INF (int)(1e18)
 
 int n, r;
-vector<int> t, dk, dep, vr, ds1, ds2, ds3, ds4, ds5;
-vector<vector<int>> up, d1up, d2up, d3up, d4up, d5up, R;
+vector<int> t, dk, dep, vr, ds1, ds2;
+vector<vector<int>> up, d1up, d2up, R;
 vector<vector<array<int, 2>>> G;
 
 void dfs(int v, int p){
@@ -25,7 +26,7 @@ void dfs(int v, int p){
   }
 }
 
-void bfs(const vector<int> &S, vector<int> &ds){
+void dijkstra(const vector<int> &S, vector<int> &ds){
   priority_queue<array<int, 2>> q;
   for_each(all(S), [&q, &ds](int i){ q.push({0, i}); ds[i] = 0; });
 
@@ -53,35 +54,21 @@ void build(){
     for(int i = 1; i <= n; i++)
       up[i][k] = up[up[i][k-1]][k-1];
 
-  sort(all(vr), [](int a, int b){ return R[a].size() > R[b].size(); });
+  if(vr.size() == 2){
+    dijkstra(R[vr[0]], ds1);
+    dijkstra(R[vr[1]], ds2);
 
-  bfs(R[vr[0]], ds1);
-  if(vr.size() >= 2)
-    bfs(R[vr[1]], ds2);
-  if(vr.size() >= 3)
-    bfs(R[vr[2]], ds3);
-  if(vr.size() >= 4)
-    bfs(R[vr[3]], ds4);
-  if(vr.size() >= 5)
-    bfs(R[vr[4]], ds5);
-
-  for(int i = 1; i <= n; i++){
-    d1up[i][0] = min(ds1[i], ds1[up[i][0]]);
-    d2up[i][0] = min(ds2[i], ds2[up[i][0]]);
-    d3up[i][0] = min(ds3[i], ds3[up[i][0]]);
-    d4up[i][0] = min(ds4[i], ds4[up[i][0]]);
-    d5up[i][0] = min(ds5[i], ds5[up[i][0]]);
-  }
-
-  for(int k = 1; k <= LOG; k++)
     for(int i = 1; i <= n; i++){
-      d1up[i][k] = min(d1up[i][k-1], d1up[up[i][k-1]][k-1]);
-      d2up[i][k] = min(d2up[i][k-1], d2up[up[i][k-1]][k-1]);
-      d3up[i][k] = min(d3up[i][k-1], d3up[up[i][k-1]][k-1]);
-      d4up[i][k] = min(d4up[i][k-1], d4up[up[i][k-1]][k-1]);
-      d5up[i][k] = min(d5up[i][k-1], d5up[up[i][k-1]][k-1]);
+      d1up[i][0] = min(ds1[i], ds1[up[i][0]]);
+      d2up[i][0] = min(ds2[i], ds2[up[i][0]]);
     }
-  
+
+    for(int k = 1; k <= LOG; k++)
+      for(int i = 1; i <= n; i++){
+        d1up[i][k] = min(d1up[i][k-1], d1up[up[i][k-1]][k-1]);
+        d2up[i][k] = min(d2up[i][k-1], d2up[up[i][k-1]][k-1]);
+      }
+  }
 }
 
 int lca(int a, int b){
@@ -147,16 +134,8 @@ int qry(int a, int b, int c){
   if(vr.size() == 1)
     return d(a, b, b);
   
-  if(c == vr[0])
-    r2(a, b, c, d1up, ds1);
-  else if(vr.size() >= 2 && c == vr[1])  
-    r2(a, b, c, d2up, ds2);
-  else if(vr.size() >= 3 && c == vr[2])  
-    r2(a, b, c, d3up, ds3);
-  else if(vr.size() >= 4 && c == vr[3])  
-    r2(a, b, c, d4up, ds4);
-  else if(vr.size() >= 5 && c == vr[4])  
-    r2(a, b, c, d5up, ds5);
+  if(vr.size() == 2)
+    return r2(a, b, c, c == vr[0] ? d1up : d2up, c == vr[0] ? ds1 : ds2);  
 
   int mn = INF;
   for(int x : R[c])
@@ -196,20 +175,12 @@ signed main(){
 void init(){
   t.resize(n+1);
   dk.resize(n+1);
+  ds1.resize(n+1, INF);
+  ds2.resize(n+1, INF);
   dep.resize(n+1);
   G.resize(n+1);
   R.resize(r+1);
   up.resize(n+1, vector<int>(LOG+1));
-
-  ds1.resize(n+1, INF);
-  ds2.resize(n+1, INF);
-  ds3.resize(n+1, INF);
-  ds4.resize(n+1, INF);
-  ds5.resize(n+1, INF);
-
   d1up.resize(n+1, vector<int>(LOG+1, INF));
   d2up.resize(n+1, vector<int>(LOG+1, INF));
-  d3up.resize(n+1, vector<int>(LOG+1, INF));
-  d4up.resize(n+1, vector<int>(LOG+1, INF));
-  d5up.resize(n+1, vector<int>(LOG+1, INF));
 }
