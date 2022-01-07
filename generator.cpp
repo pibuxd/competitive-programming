@@ -25,6 +25,22 @@ vector<int> ran_vec(int n, int a, int b){
   return ran;
 }
 
+// @return random neighborhood list of tree with n nodes, n-1 edges and 1 as root
+vector<vector<int>> ran_tree(int n){
+  vector<vector<int>> G(n+1);
+  vector<int> parents(n+1);
+  
+  parents[1] = 1;
+  for(int i = 2; i <= n; i++){
+    while(parents[i] == 0 || parents[i] == i || !parents[parents[i]])
+      parents[i] = ran_int(1, n);
+
+    G[i].push_back(parents[i]);
+  }
+
+  return G;
+}
+
 void init_Seed(){
   int seed;
   cin >> seed;
@@ -38,11 +54,19 @@ int main(){
   vector<int> v = ran_vec(3, 4, 9);
   int x = ran_int(5, 10);
   string s = ran_str(6, 3);
+  vector<vector<int>> G = ran_tree(10);
 
+  cout << "\n";
   for(int i : v)
     cout << i << " ";
-  cout << "\n";
+  cout << "\n\n";
 
-  cout << x << "\n"; 
-  cout << s << "\n";
+  cout << x << "\n\n"; 
+  cout << s << "\n\n";
+
+  // print tree
+  cout << G.size()-1 << "\n";
+  for(int i = 1; i <= G.size()-1; i++)
+    for(int node : G[i])
+      cout << i << " " << node << "\n";
 }
