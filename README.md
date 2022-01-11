@@ -15,6 +15,9 @@ solutions from "Codeforces"
 - ***[CSES](https://cses.fi/problemset/list/)***
 solutions from CSES, Finnish platform with problems
 
+- ***[MeetIT](https://meetit.eu/)***
+stuff from MeetIT, mostly camps
+
 - ***[POI](https://szkopul.edu.pl/p/default/problemset/oi)***
 solutions from the Polish Olympiad in Informatics and OTHER polish contests/tournaments
 
@@ -29,6 +32,9 @@ solutions from my high school and Jagiellonian University contests
 
 - ***[School](https://szkopul.edu.pl/)***
 stuff from my high school
+
+- ***[Staszic](https://sio2.staszic.waw.pl/)***
+solutions from Staszic High School in Warsaw (very useful for Olympiad, but in polish)
 
 - ***[WSI](https://solve.edu.pl/~sparingi/tasks)***
 solutions from "Wrocławskie Sparingi Informatyczne"
