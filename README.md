@@ -13,13 +13,13 @@ solutions from "AtCoder"
 solutions from "Codeforces"
 
 - ***[CSES](https://cses.fi/problemset/list/)***
-solutions from CSES, Finnish platform with problems
+solutions from CSES
 
 - ***[MeetIT](https://meetit.eu/)***
 stuff from MeetIT, mostly camps
 
 - ***[POI](https://szkopul.edu.pl/p/default/problemset/oi)***
-solutions from the Polish Olympiad in Informatics and OTHER polish contests/tournaments
+solutions from the Polish Olympiad in Informatics
 
 - ***[PA](https://potyczki.mimuw.edu.pl/)***
 solutions from the Polish contest "Potyczki Algorytmiczne"
