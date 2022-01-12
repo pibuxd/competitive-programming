@@ -12,22 +12,22 @@ using namespace std;
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace __gnu_pbds;
 
-typedef tree<pair<int, int>, null_type, less<pair<int, int>>, rb_tree_tag,
+typedef tree<int, null_type, less<int>, rb_tree_tag,
 tree_order_statistics_node_update> indexed_set;
 
 int main(){
   indexed_set s;
-  s.insert({3, 5});
-  s.insert({6, 5});
-  s.insert({7, 6});
-  s.insert({1, 2});
+  s.insert(3);
+  s.insert(6);
+  s.insert(7);
+  s.insert(1);
 
   // returns an iterator to the element at a given position
   auto x = *s.find_by_order(1); 
-  cout << x.first << "\n"; // 7
+  cout << x << "\n"; // 3
 
   // returns the position of a given element
-  auto y = s.order_of_key({1, -10000});
+  auto y = s.order_of_key(3);
   cout << y << "\n"; // 1
 
 }
