@@ -20,6 +20,7 @@ stuff from MeetIT, mostly camps
 
 - ***[POI](https://szkopul.edu.pl/p/default/problemset/oi)***
 solutions from the Polish Olympiad in Informatics
+[List of all problems with offical editorials](https://www.algonotes.com/en/archive/oi/)
 
 - ***[PA](https://potyczki.mimuw.edu.pl/)***
 solutions from the Polish contest "Potyczki Algorytmiczne"
@@ -34,7 +35,7 @@ solutions from my high school and Jagiellonian University contests
 stuff from my high school
 
 - ***[Staszic](https://sio2.staszic.waw.pl/)***
-solutions from Staszic High School in Warsaw (very useful for Olympiad, but in polish)
+solutions from Staszic High School in Warsaw (very usefuf)
 
 - ***[WSI](https://solve.edu.pl/~sparingi/tasks)***
 solutions from "Wrocławskie Sparingi Informatyczne"
