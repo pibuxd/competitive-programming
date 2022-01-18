@@ -35,7 +35,7 @@ solutions from my high school and Jagiellonian University contests
 stuff from my high school
 
 - ***[Staszic](https://sio2.staszic.waw.pl/)***
-solutions from Staszic High School in Warsaw (very usefuf)
+solutions from Staszic High School in Warsaw (very interesting tasks)
 
 - ***[WSI](https://solve.edu.pl/~sparingi/tasks)***
 solutions from "Wrocławskie Sparingi Informatyczne"
