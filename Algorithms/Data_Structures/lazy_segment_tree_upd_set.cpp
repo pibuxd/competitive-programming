@@ -7,8 +7,8 @@ using namespace std;
 typedef long long ll;
 
 #define m (l+r)/2 // mid
-#define lv 2*v // left vertex
-#define rv 2*v+1 // right vertex
+#define lv (2*v) // left vertex
+#define rv (2*v+1) // right vertex
 
 struct Node {
   ll val = 0, lz_add = 0, lz_set = 0;

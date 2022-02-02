@@ -5,8 +5,8 @@
 using namespace std;
 
 #define m (l+r)/2 // mid
-#define lv 2*v // left vertex
-#define rv 2*v+1 // right vertex
+#define lv (2*v) // left vertex
+#define rv (2*v+1) // right vertex
 
 struct Node {
   int val = 0, lz = 0;
