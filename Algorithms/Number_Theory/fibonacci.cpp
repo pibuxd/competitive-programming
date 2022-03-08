@@ -2,13 +2,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// O(log(n))
 int fib_math(int n){
   double phi = (1 + sqrt(5)) / 2;
   return round(pow(phi, n) / sqrt(5)); 
 }
 
-// O(n)
 int fib_dp(int n){
   vector<int> f(n+1);
   f[0] = 0;
@@ -19,7 +17,6 @@ int fib_dp(int n){
   return f[n];
 }
 
-// O(n)
 int fib_recursion(int n){
   if(n <= 1)
     return n;
