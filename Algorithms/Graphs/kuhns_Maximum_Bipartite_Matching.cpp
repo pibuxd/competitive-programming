@@ -4,7 +4,6 @@
 // no selected edge shares a vertex with any other selected edge.
 #include <bits/stdc++.h>
 using namespace std;
-#define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
 
 int n, m, nr;
 vector<vector<int>> G;
@@ -25,7 +24,6 @@ bool match(int v){
 }
 
 int main(){
-  fastio;
   cin >> n >> m;
 
   G.resize(n+1);
