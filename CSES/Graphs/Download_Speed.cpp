@@ -1,4 +1,4 @@
-// Max flow
+// * Maximum flow - Ford-Fulkerson algorithm
 #include <bits/stdc++.h>
 using namespace std;
 #define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
@@ -17,14 +17,13 @@ int dfs(int v, int currd){
   for(int x : G[v]){
     if(M[{v, x}] > 0 && !vis[x]){
       int d = dfs(x, min(currd, M[{v, x}]));
-
-      if(d == 0)
-        continue;
-
       M[{v, x}] -= d;
       M[{x, v}] += d;
 
-      return d;
+      if(d == 0)
+        continue;
+      else
+        return d;
     }
   }
 
