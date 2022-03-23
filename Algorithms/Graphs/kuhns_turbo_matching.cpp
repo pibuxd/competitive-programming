@@ -15,11 +15,15 @@ bool match(int v){
   vis[v] = nr;
 
   for(int x : G[v])
-    if(!mt[x] || match(mt[x])){
+    if(!mt[x]){
       mt[x] = v;
       return true;
     }
-
+  for(int x : G[v])
+    if(match(mt[x])){
+      mt[x] = v;
+      return true;
+    }
   return false;
 }
 
