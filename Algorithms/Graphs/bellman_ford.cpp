@@ -16,15 +16,14 @@ void negative_cycle(int a, int b){
 void bellman_ford(int start){
   dist[start] = 0;
   
-  for(int it = 1; it <= n - 1; it++)
-    for(int i = 1; i <= n; i++){
-      for(auto x : G[i]){
-        if(dist[i] + x.second < dist[x.first]){
-          dist[x.first] = dist[i] + x.second;
-          parent[x.first] = i;
-        }
+  for(int i = 1; i <= n; i++){
+    for(auto x : G[i]){
+      if(dist[i] + x.second < dist[x.first]){
+        dist[x.first] = dist[i] + x.second;
+        parent[x.first] = i;
       }
     }
+  }
 
   // check for negative-weight cycles
   for(int i = 1; i <= n; i++){
