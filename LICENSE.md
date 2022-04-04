@@ -1,3 +1,3 @@
-Copyright 2022 Piotr "pibuxd" Bublik
+2022 Piotr "pibuxd" Bublik
 
-If you would like to use it, please write that I am the owner
+If you would like to copy the entire file, please leave a note that I am the author. Otherwise, do what you want.
