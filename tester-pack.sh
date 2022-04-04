@@ -4,7 +4,7 @@
 
 name=$1
 tests_dir=$2
-prefix=${3:-}
+prefix=${3:-} # prefix of each test file (prefix1.in, prefix420.out etc.)
 
 g++ -O3 -Wall -Wextra -o $name $name.cpp
 printf "compiled\nfile=${name}.cpp, testing directory=${tests_dir}, prefix=${prefix}\n"
