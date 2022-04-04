@@ -1,7 +1,7 @@
-# Algorithmics stuff
->  favourite sources [USACO guide](https://usaco.guide/) and [cp-algorithms](https://cp-algorithms.com/)
+# My competitive programming
+Everything is made by me :)
 
-## These are my solutions from the following content
+### The tasks are from there
 
 - ***Algorithms***
 ready-made algorithms
@@ -10,7 +10,7 @@ ready-made algorithms
 solutions from "AtCoder"
 
 - ***[CFORC](https://codeforces.com/)***
-solutions from "Codeforces"
+solutions from "CodeForces"
 
 - ***[CSES](https://cses.fi/problemset/list/)***
 solutions from CSES
@@ -35,19 +35,17 @@ solutions from my high school and Jagiellonian University contests
 stuff from my high school
 
 - ***[Staszic](https://sio2.staszic.waw.pl/)***
-solutions from Staszic High School in Warsaw (very interesting tasks)
+solutions from Staszic High School in Warsaw
 
 - ***[WSI](https://solve.edu.pl/~sparingi/tasks)***
-solutions from "Wrocławskie Sparingi Informatyczne"
+solutions from "Wroclawskie Sparingi Informatyczne"
 
 - ***Other***
-other contests
-
 ## Testing
 
-+ ***pattern.cpp*** - the solution that is checked if it is correct
 + ***generator.cpp*** - creates random input for task
-+ ***brute.cpp*** - the brute solution which checks if the pattern is correct
-+ ***tester.sh*** - script that manages the pattern testing process
-+ ***tester-portable.sh*** - simple and portable script for the pattern testing process
-+ ***tester-pack.sh*** - simple script for testing packages of tests
++ ***pattern.cpp*** - the solution that is being tested
++ ***brute.cpp*** - a brute-force solution whose output is compared to the pattern's output
++ ***tester.sh*** - script that manages the testing process
++ ***tester-portable.sh*** - simple and portable version of `tester.sh`
++ ***tester-pack.sh*** - script for testing packages of tests
