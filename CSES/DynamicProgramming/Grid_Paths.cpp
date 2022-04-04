@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Count all possible paths in grid (matrix), but some squares are traps
 #include <bits/stdc++.h>
 using namespace std;

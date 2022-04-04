@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * calculate ( i->n ∑ σ(i) ) modulo 10^9+7 in O(sqrt(n))
 #include <bits/stdc++.h>
 using namespace std;

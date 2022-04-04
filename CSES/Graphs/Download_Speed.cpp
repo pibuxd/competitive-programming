@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Maximum flow - Ford-Fulkerson algorithm
 #include <bits/stdc++.h>
 using namespace std;

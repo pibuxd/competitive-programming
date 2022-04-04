@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Segment tree PURQ
 #include <bits/stdc++.h>
 using namespace std;

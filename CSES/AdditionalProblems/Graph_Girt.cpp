@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Cycle find
 // * BFS
 #include <bits/stdc++.h>

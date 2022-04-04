@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Binary Exponentiation (exponentiation by squaring)
 // * quick power
 // a^b = (a^(b/2))^2

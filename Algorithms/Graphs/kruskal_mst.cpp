@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Kruskal algorithm on MST (Minimum Spanning Tree)
 // * using DSU (Disjoint Set Union)
 // * detect if can't build MST

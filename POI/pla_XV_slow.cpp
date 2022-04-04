@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * RMQ
 // * O(n + nlogn)
 #include <bits/stdc++.h>

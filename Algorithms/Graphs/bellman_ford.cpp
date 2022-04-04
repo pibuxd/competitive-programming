@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * finds shortest paths from a starting node to all nodes
 // * detect negative cycle in the graph
 // directed weighted graph

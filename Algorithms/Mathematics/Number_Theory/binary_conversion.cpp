@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * ways to convert binary to decimal and vice versa
 // https://codeforces.com/blog/entry/73490
 #include <bits/stdc++.h>

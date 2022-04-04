@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * finds all shortest paths between the nodes in a single run.
 // directed or an undirected weighted graph, no negative weight cycles
 #include <bits/stdc++.h>

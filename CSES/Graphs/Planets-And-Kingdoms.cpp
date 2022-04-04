@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // Tarjan's SCC
 #include <bits/stdc++.h>
 using namespace std;

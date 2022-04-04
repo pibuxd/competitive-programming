@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 /**
  * * FIND AND UNION
  * * Na poczatku wszystkie pola sa zjedzone,

@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Nearest Smaller Element problem
 // * Stack
 #include <bits/stdc++.h>

@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Kuhn's Algorithm for Maximum Bipartite Matching
 #include <bits/stdc++.h>
 using namespace std;

@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Find union + school maths summing two numbers
 #include <bits/stdc++.h>
 using namespace std;

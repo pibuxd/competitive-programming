@@ -1,4 +1,5 @@
 #!/bin/bash
+# author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 # tester for competetive programming (CP)
 
 # color variables

@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Tarjan's algorithm fo SCC (Strongly Connected Components)
 // low-link (low) is a value of a node is the lowest node id
 // reachable from that node when doing a DFS (including itself)

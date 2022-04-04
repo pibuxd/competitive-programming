@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * test generator for testing
 #include <bits/stdc++.h>
 using namespace std;

@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Fenwick Tree or BIT (Binary Indexed Tree)
 // * RANGE add, POINT query
 #include <bits/stdc++.h>

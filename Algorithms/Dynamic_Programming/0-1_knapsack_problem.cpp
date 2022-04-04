@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * 0-1 Knapsack problem
 // * buy at most number of pages for the maximum amount
 // * 0-1 means that we can pick the complete item or don’t pick it

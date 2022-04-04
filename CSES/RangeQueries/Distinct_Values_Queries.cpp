@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * The main idea is sorting in descending order or answering queries from rightmost to leftmost
 #include <bits/stdc++.h>
 using namespace std;

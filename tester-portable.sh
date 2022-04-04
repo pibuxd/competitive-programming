@@ -1,4 +1,5 @@
 #!/bin/bash
+# author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 # portable tester for competetive programming (CP)
 
 g++ -O3 -o generator generator.cpp

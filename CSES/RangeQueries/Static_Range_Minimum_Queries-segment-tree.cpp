@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Segment Tree (only range min query)
 #include <bits/stdc++.h>
 using namespace std;

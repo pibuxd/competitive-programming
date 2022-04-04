@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Segment tree PURQ (point update range query)
 // https://usaco.guide/problems/cses-1188-bit-inversions/solution
 // We have to do two segment trees (one for th 0s and one for the 1s):

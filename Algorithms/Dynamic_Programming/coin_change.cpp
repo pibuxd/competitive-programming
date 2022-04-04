@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Coin change - minimal number of coins to change given sum
 // * detect if can't change
 #include <bits/stdc++.h>

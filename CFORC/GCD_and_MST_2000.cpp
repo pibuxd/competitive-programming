@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Number theory (math)
 // * DSU
 #include <bits/stdc++.h>

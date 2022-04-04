@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Binary search
 // * upper bound
 #include <bits/stdc++.h>

@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Order Statistic Tree (ordered set/indexed set)
 // * policy based data structure
 // * tree-based container O(log(n))

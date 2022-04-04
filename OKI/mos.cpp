@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * find bridges using function LOW and calculate result
 #include <bits/stdc++.h>
 using namespace std;

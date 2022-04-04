@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Segment Tree
 // * POINT update, RANGE query
 // * in this example I wrote a MINIMUM query

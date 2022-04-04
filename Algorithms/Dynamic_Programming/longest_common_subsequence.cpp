@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Longest Common Subsequence (LCS)
 #include <bits/stdc++.h>
 using namespace std;

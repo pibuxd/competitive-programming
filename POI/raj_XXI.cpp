@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * SCC + topological sort + segment tree
 #include <bits/stdc++.h>
 using namespace std;

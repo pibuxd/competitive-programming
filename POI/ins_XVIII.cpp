@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * DP on tree + find centroid
 #include <bits/stdc++.h>
 using namespace std;

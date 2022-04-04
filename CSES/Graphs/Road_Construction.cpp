@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Disjoint Set Union
 #include <bits/stdc++.h>
 using namespace std;

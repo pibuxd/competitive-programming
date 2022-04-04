@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Coin combinations
 #include <bits/stdc++.h>
 using namespace std;

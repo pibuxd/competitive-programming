@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * finds shortest paths from a starting node to all nodes
 // directed or undirected weighted graph, no negative weight edges
 #include <bits/stdc++.h>

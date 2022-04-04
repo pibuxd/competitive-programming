@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * pattern solution for testing
 #include <bits/stdc++.h>
 using namespace std;

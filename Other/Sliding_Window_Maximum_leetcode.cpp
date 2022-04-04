@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Sliding window
 // * Data structure
 #include <bits/stdc++.h>

@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Disjoint Set Union (DSU)
 // siz - size of unions
 // smaller union merge with bigger union

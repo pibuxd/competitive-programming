@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * 2P (Two poiners)
 // * also usage of multimap
 #include <bits/stdc++.h>

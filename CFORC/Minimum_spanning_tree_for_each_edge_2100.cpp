@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // a - vertex 1, b - vertex 2, w - weight of edge(a, b)
 #include <bits/stdc++.h>
 using namespace std;

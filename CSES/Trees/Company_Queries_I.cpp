@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * binary lifting/jumping
 // * using binary representation and DFS
 // tree

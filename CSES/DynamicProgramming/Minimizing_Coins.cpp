@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Coin change
 // detect if can't change
 #include <bits/stdc++.h>

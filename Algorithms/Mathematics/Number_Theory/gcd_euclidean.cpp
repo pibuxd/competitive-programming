@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Greatest Common Divisor using Euclidean algorithm
 #include <bits/stdc++.h>
 using namespace std;

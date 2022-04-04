@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * DP with segment tree
 // !it's very typical DP with segment tree problem
 #include <bits/stdc++.h>

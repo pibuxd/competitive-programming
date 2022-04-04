@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // doesn't work
 #include <bits/stdc++.h>
 using namespace std;

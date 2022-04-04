@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * 2P (Two pointers)
 #include <bits/stdc++.h>
 using namespace std;

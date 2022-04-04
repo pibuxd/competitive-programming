@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Kuhn's Algorithm for Maximum Bipartite Matching
 // given a bipartite graph 
 // select as many edges as possible so that 

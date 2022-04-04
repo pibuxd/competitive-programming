@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * sort with custom comparator
 // if size of two strings is equal -> sort lexicographically
 // else -> sort strings ascending by size

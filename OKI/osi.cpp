@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * find BRIDGES and SCC using function LOW and calculate result
 #include <bits/stdc++.h>
 using namespace std;

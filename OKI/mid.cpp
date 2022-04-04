@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Trie and segment tree to find the first 1-edge and then compare depth and depth order
 #include <bits/stdc++.h>
 using namespace std;

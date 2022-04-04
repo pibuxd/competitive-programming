@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Centroid Decomposition
 // * calculate depth[node] of centroid decomposition tree
 #include <bits/stdc++.h>

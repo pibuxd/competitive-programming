@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Monotone Queue
 // * O(n)
 #include <bits/stdc++.h>

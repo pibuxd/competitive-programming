@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * binary lifting easy task
 #include <bits/stdc++.h>
 using namespace std;

@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Euler Tour Technique using Segment Tree PURQ
 // * Flattening a tree into an array to easily query and update subtrees.
 #include <bits/stdc++.h>

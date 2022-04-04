@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * MST -> Kruskals algorithm
 #include <bits/stdc++.h>
 using namespace std;

@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Dynamic Programming on tree + binary search
 #include <bits/stdc++.h>
 using namespace std;

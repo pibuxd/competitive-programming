@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Ways to calculate n'th Fibonacci numbers
 #include <bits/stdc++.h>
 using namespace std;

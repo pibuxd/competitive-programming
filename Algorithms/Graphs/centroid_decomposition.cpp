@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Centroid Decomposition
 // * calculate depth[node] of centroid decomposition tree
 // article: https://medium.com/carpanese/an-illustrated-introduction-to-centroid-decomposition-8c1989d53308

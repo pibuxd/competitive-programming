@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * stack Nearest Element + binary jumping + sparse table
 #include <bits/stdc++.h>
 using namespace std;

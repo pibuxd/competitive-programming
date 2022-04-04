@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // 30% -> a[i] = b[i]
 #include <bits/stdc++.h>
 using namespace std;

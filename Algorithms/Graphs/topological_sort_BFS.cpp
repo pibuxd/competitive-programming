@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Topological sort in DAG (Directed Acyclic Graph)
 // * Known as Kahn's algorithm using BFS
 #include <bits/stdc++.h>

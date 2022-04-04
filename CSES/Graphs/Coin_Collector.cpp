@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // 1. Create SCC
 // 2. Make DAG - each node is one SCC and Tarjan's algo
 //    will make topologial order automatically

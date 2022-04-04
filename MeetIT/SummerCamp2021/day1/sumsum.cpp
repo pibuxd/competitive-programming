@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * NGE (Next Greater Element)
 #include <bits/stdc++.h>
 using namespace std;

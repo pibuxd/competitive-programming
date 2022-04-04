@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * KMP string matching algorithm
 // * but searching for the minimum prefix-suffix
 #include <bits/stdc++.h>

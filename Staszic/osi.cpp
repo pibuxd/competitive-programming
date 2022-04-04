@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // find union na krawedziach
 #include <bits/stdc++.h>
 using namespace std;

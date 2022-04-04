@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Lazy Propagation Segment Tree
 // * range ADD update
 // * range MAX query

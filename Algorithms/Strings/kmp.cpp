@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * KMP string matching algorithm
 #include <bits/stdc++.h>
 using namespace std;

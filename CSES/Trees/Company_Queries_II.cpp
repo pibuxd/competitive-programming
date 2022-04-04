@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * LCA – Lowest Common Ancestor using binary lifting/jumping
 #include <bits/stdc++.h>
 using namespace std;

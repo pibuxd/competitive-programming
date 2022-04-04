@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Count divisors of the number
 #include <bits/stdc++.h>
 using namespace std;

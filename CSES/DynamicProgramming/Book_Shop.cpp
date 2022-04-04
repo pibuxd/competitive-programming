@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * 0-1 Knapsack problem
 #include <bits/stdc++.h>
 using namespace std;

@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * Quick power with modulo
 #include <bits/stdc++.h>
 using namespace std;

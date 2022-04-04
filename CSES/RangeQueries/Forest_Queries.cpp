@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 // * 2D prefix sums
 #include <bits/stdc++.h>
 using namespace std;

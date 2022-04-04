@@ -1,3 +1,4 @@
+// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 /**
  * * LCA - eulerian path method with segment tree
  */
