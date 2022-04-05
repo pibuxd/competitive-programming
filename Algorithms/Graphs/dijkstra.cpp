@@ -1,4 +1,5 @@
 // author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
+// * Dijkstra algorithm using priority queue
 // * finds shortest paths from a starting node to all nodes
 // directed or undirected weighted graph, no negative weight edges
 #include <bits/stdc++.h>
@@ -12,11 +13,13 @@ vector<long long> dist;
 
 void dijkstra(int start){
   dist[start] = 0;
-  priority_queue<pair<long long, int>> PQ;
+  priority_queue<pair<long long, int>,
+                 vector<pair<long long, int>, 
+                 greater<pair<long long, int>> PQ;
   PQ.push({0, start});
 
   while(!PQ.empty()){
-    long long w = -PQ.top().first;
+    long long w = PQ.top().first;
     int v = PQ.top().second;
     PQ.pop();
 
@@ -27,7 +30,7 @@ void dijkstra(int start){
       if(dist[x.first] > dist[v] + x.second){
         dist[x.first] = dist[v] + x.second;
         parent[x.first] = v;
-        PQ.push({-dist[x.first], x.first});
+        PQ.push({dist[x.first], x.first});
       }
     }
   }
