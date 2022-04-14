@@ -1,5 +1,7 @@
 # My competitive programming
-Everything is made by me :)
+[![Codeforces rating](https://img.shields.io/badge/dynamic/json?logo=codeforces&logoColor=white&color=%2303a89e&label=Codeforces&query=%24.result%5B0%5D.maxRating&url=https%3A%2F%2Fcodeforces.com%2Fapi%2Fuser.info%3Fhandles%3Dpibu)](https://codeforces.com/profile/pibu)
+My competitive programming solutions, mainly from Polish Olympiad in Informatics and CODEFORCES. May be wrong or incomplete especially in POI.
+This repository is used by me as a diary and can be used as a ready-made solution. I also hope not to submit it to the cp platform mindlessly just for flex...
 
 ### The tasks are from there
 
@@ -7,10 +9,10 @@ Everything is made by me :)
 ready-made algorithms
 
 - ***[ATCODER](https://atcoder.jp/)***
-solutions from "AtCoder"
+solutions from AtCoder
 
 - ***[CFORC](https://codeforces.com/)***
-solutions from "CodeForces"
+solutions from CodeForces
 
 - ***[CSES](https://cses.fi/problemset/list/)***
 solutions from CSES
@@ -25,17 +27,14 @@ solutions from the Polish Olympiad in Informatics
 - ***[PA](https://potyczki.mimuw.edu.pl/)***
 solutions from the Polish contest "Potyczki Algorytmiczne"
 
-- ***[PIWO](https://szkopul.edu.pl/c/piwo-202021/p/)***
-solutions from my high school "PIWO" problems
-
 - ***[Satori](https://satori.tcs.uj.edu.pl/)***
-solutions from my high school and Jagiellonian University contests
+solutions from Jagiellonian University contests
 
 - ***[School](https://szkopul.edu.pl/)***
-stuff from my high school
+stuff from my high school (5th Witkowski High School in Cracow)
 
 - ***[Staszic](https://sio2.staszic.waw.pl/)***
-solutions from Staszic High School in Warsaw
+solutions from 14th Staszic High School in Warsaw
 
 - ***[WSI](https://solve.edu.pl/~sparingi/tasks)***
 solutions from "Wroclawskie Sparingi Informatyczne"
