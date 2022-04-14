@@ -1,5 +1,6 @@
 # My competitive programming
 [![Codeforces rating](https://img.shields.io/badge/dynamic/json?logo=codeforces&logoColor=white&color=%2303a89e&label=Codeforces&query=%24.result%5B0%5D.maxRating&url=https%3A%2F%2Fcodeforces.com%2Fapi%2Fuser.info%3Fhandles%3Dpibu)](https://codeforces.com/profile/pibu)
+
 My competitive programming solutions, mainly from Polish Olympiad in Informatics and CODEFORCES. May be wrong or incomplete especially in POI.
 This repository is used by me as a diary and can be used as a ready-made solution. I also hope not to submit it to the cp platform mindlessly just for flex...
 
