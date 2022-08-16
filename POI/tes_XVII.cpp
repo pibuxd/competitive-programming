@@ -1,23 +1,46 @@
-// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
+// binary search (upper bound here)
 #include <bits/stdc++.h>
 using namespace std;
+#define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+#define all(x) x.begin(), x.end()
+
+int n;
+vector<int> a;
+vector<vector<int>> idx;
+
+string ans(vector<int> &v){
+  int k = 0;
+  for(int x : v){
+    auto it = upper_bound(all(idx[x]), k);
+    if(it == idx[x].end())
+      return "NIE";
+    k = *it;
+  }
+
+  return "TAK";
+}
 
 int main(){
-  int n, p, l, g; cin >> g; vector<int> N, V;
-  for(int i = 0; i < g; i++){
-    cin >> p; N.push_back(p);
-  } cin >> n;
-for(int it = 0, s = 0, z = 0; it < n; it++, s = 0, z = 0){ cin >> l; V.clear();
-  for(int i = 0; i < g; i++){
-    if(i == l) z++;
-    if(z == 0) { cin >> p; V.push_back(p); }
-    if(V[s] == N[i]) s++;
-    if(s < l && i == g - 1 && V[l] != N[g]) goto koniec;
+  fastio;
+  cin >> n;
+  a.assign(n+1, 0);
+  idx.assign(1000000, {});
+
+  for(int i = 1; i <= n; i++){
+    cin >> a[i];
+    idx[a[i]].push_back(i);
   }
-  cout << "TAK" << '\n';
-  goto end;
-  koniec:
-  cout << "NIE" << '\n';
-  end:;
-}
+  
+  int t;
+  cin >> t;
+  while(t--){
+    int m; cin >> m;
+    vector<int> b;
+    while(m--){
+      int x; cin >> x;
+      b.push_back(x);
+    }
+
+    cout << ans(b) << "\n";
+  }
 }
