@@ -25,7 +25,8 @@ int lca(int a, int b){
   int k = depth[a] - depth[b];
 
   for(int i = 0; i <= LOGN; i++)
-    if((k >> i) & 1)
+    // if((k >> i) & 1)
+    if(k & (1 << i))
       a = up[a][i];
 
   if(a == b)
