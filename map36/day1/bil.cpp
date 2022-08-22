@@ -19,7 +19,8 @@ int main(){
 
   for(long long i = 1; i <= n; i++){
     long long a; cin >> a;
-    sum += s.order_of_key({min(a, i), 0});
+
+    sum += s.order_of_key({min(a, i)-1, 0});
     s.insert({a, i});
   }
 
