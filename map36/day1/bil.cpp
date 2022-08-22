@@ -5,7 +5,7 @@ using namespace std;
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace __gnu_pbds;
 
-typedef tree<pair<long long, long long>, null_type, less<pair<long long, long long>>, rb_tree_tag,
+typedef tree<pair<long long, long long>, null_type, greater<pair<long long, long long>>, rb_tree_tag,
 tree_order_statistics_node_update> indexed_set;
 
 long long n;
@@ -17,9 +17,9 @@ int main(){
   indexed_set s;
   long long sum = 0;
 
-  for(int i = 1; i <= n; i++){
+  for(long long i = 1; i <= n; i++){
     long long a; cin >> a;
-    sum += s.size()-s.order_of_key({i, 0});
+    sum += s.order_of_key({min(a, i), 0});
     s.insert({a, i});
   }
 
