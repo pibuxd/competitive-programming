@@ -48,11 +48,9 @@ int main(){
   ids.resize(n+1);
   low.resize(n+1);
   id = 0;
-
+  on_st.resize(n+1);
   for(int i = 1; i <= n; i++)
     if(!ids[i]){
-      st = stack<int>();
-      on_st.resize(n+1);
       dfs(i);
     }
   
