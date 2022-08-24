@@ -3,6 +3,8 @@
 // given a bipartite graph 
 // select as many edges as possible so that 
 // no selected edge shares a vertex with any other selected edge.
+// https://usaco.guide/CPH.pdf#page=197
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -58,4 +60,6 @@ int main(){
 
   if(sum == n)
     cout << "Perfect matching!\n";
+  // minimum node cover = maximum bipartite matchin
+  // maximum independent set = n - minimum node cover
 }
