@@ -7,29 +7,27 @@ using namespace std;
 
 int n;
 vector<vector<int>> G;
-vector<int> sub;
+vector<int> sub, centroids;
 
-int dfs(int v, int p){
-  sub[v] = 1;
-  for(int x : G[v])
-    if(x != p)
-      sub[v] += dfs(x, v);
+void dfs(int v, int p){
+  bool iscent = true;
 
-  return sub[v];
-}
+  for(int x : G[v]){
+    if(x == p) continue;
+    dfs(x, v);
 
-int find_centroid(int v, int p){
-  for(int x : G[v])
-    if(x != p && sub[x] > n/2)
-      return find_centroid(x, v);
-
-  return v;
+    sub[v] += sub[x] + 1;
+    if(sub[x] + 1 > n/2)
+      iscent = false;
+  }
+  if(iscent && (n-sub[v]-1) <= n/2)
+    centroids.push_back(v);
 }
 
 int main(){
   cin >> n;
   G.resize(n+1);
-  sub.resize(n+1);
+  sub.resize(n+1, 0);
 
   for(int i = 1; i <= n-1; i++){
     int a, b;
@@ -39,5 +37,5 @@ int main(){
   }
 
   dfs(1, 0);
-  cout << find_centroid(1, 0);
+  for(int c : centroids) cout << c << " ";
 }
