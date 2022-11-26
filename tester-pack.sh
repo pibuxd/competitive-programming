@@ -6,7 +6,7 @@ name=$1
 tests_dir=$2
 prefix=${3:-} # prefix of each test file (prefix1.in, prefix420.out etc.)
 
-g++ -O3 -Wall -Wextra -o $name $name.cpp
+g++ -O3 -o $name $name.cpp
 printf "compiled\nfile=${name}.cpp, testing directory=${tests_dir}, prefix=${prefix}\n"
 
 for ((i = 0; i <= 100000; i++)); do
@@ -18,7 +18,6 @@ for ((i = 0; i <= 100000; i++)); do
   fi
 
   ./$name < $namein > temp.out
-
   if diff -b temp.out $nameout > /dev/null; then
     printf "test: $i OK \r"
   else
