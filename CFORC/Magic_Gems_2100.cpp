@@ -15,13 +15,13 @@ struct mat{
     for(int i = 1; i <= n; i++)
       for(int j = 1; j <= n; j++)
         for(int t = 1; t <= n; t++)
-          res.V[i][j] = (res.V[i][j] + (V[t][j] * m.V[i][t]) % M) % M;
+          res.V[i][j] = (res.V[i][j] + (m.V[t][j] * V[i][t]) % M) % M;
     return res;
   }
 };
 
-mat matrixpow(mat &a, int b){
-  mat res = a;
+mat matrixpow(mat &st, mat &a, int b){
+  mat res = st;
   while(b > 0){
     if(b % 2 == 1)
       res = res * a;
@@ -41,10 +41,12 @@ signed main(){
   for(int i = 1; i < n; i++)
     m.V[i+1][i] = 1;
   m.V[1][n] = m.V[n][n] = 1;
+  mat st;
+  st.V.resize(n+1, vector<int>(n+1));
+  for(int i = 1; i < n; i++)
+    st.V[1][i] = 1;
+  st.V[1][n] = 2;
 
-  m = matrixpow(m, N-n+1);
-  int sum = 0;
-  for(int i = 1; i <= n; i++)
-    sum = (sum + m.V[1][i]) % M;
-  cout << sum << "\n";
+  mat res = matrixpow(st, m, N-n);
+  cout << res.V[1][n] << "\n";
 }
