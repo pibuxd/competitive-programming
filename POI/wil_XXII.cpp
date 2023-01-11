@@ -4,66 +4,51 @@ using namespace std;
 #define int long long
 
 int n, p, d;
-vector<int> w, dsum; // dsum-suma deski zaczynajacej sie na pozycji i
-deque<int> DQ;
+vector<int> w, pref;
+deque<int> Q;
 
-void initdsum(){
-  int dsumsize = n-d+1;
-  dsum.assign(dsumsize+1, 0);
-  int sum = 0, r = 0;
-  while(r < d)
-    sum += w[++r];
-  dsum[1] = sum;
-  int l = 1;
-  while(r < n)
-    sum += w[++r], sum -= w[l++], dsum[l] = sum;
+void qpush(int val){
+  while(!Q.empty() && Q.back() < val)
+    Q.pop_back();
+  Q.push_back(val);
 }
 
-void dqadd(int element){
-  while(!DQ.empty() && DQ.back() < element)
-    DQ.pop_back();
-  DQ.push_back(element);
+void qpop(int val){
+  if(!Q.empty() && Q.front() == val)
+    Q.pop_front();
 }
 
-void dqrem(int element){
-  if(!DQ.empty() && DQ.front() == element)
-    DQ.pop_front();
+int qmax(){
+  return Q.front();
 }
 
-int dqmx(){
-  return DQ.front();
+int s(int a, int b){
+  return pref[b] - pref[a-1];
 }
 
 signed main(){
   fastio;
   cin >> n >> p >> d;
+  w.resize(n + 1);
+  pref.resize(n + 1);
   
-  w.assign(n+1, 0);
-  for(int i = 1; i <= n; i++)
+  for(int i = 1; i <= n; i++){
     cin >> w[i];
-
-  initdsum();
-
-  int l = 1, r = d, sum = 0, ans = d;
-  for(int i = 1; i <= d; i++)
-    sum += w[i];
-  dqadd(dsum[1]);
+    pref[i] = pref[i-1] + w[i];
+  }
+  
+  int l = 1, r = d, ans = d;
+  qpush(s(1, d));
 
   while(l <= n){
-    while(sum - dqmx() > p){
-      sum -= w[l];
-      dqrem(dsum[l]);
-      if(l == n) break;
+    while(s(l, r) - qmax() > p){
+      qpop(s(l, l+d-1));
       l++;
     }
-
     ans = max(ans, r-l+1);
-    if(r == n)
-      break;
+    if(r == n) break;
     r++;
-    sum += w[r];
-    dqadd(dsum[r-d+1]);
+    qpush(s(r-d+1, r));
   }
-
   cout << ans << "\n";
 }
