@@ -1,79 +1,52 @@
-// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
 #include <bits/stdc++.h>
 using namespace std;
 #define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
-typedef long long ll;
+#define all(x) x.begin(), x.end()
 
-ll n, ans;
-vector<vector<ll>> G;
-vector<ll> par, black;
-vector<bool> color;
+int n;
+vector<vector<int>> G;
+vector<int> par, cz;
+vector<bool> iscz;
 
-void dfs(ll v, ll p){
-  for(ll x : G[v]){
+void dfspar(int v, int p){
+  par[v] = p;
+  for(int x : G[v]){
     if(x == p) continue;
-
-    par[x] = v;
-    dfs(x, v);
+    dfspar(x, v);
   }
-}
-
-void add(ll x){
-  color[x] = true;
-  black[par[x]]++;
-
-  ll neigh = G[x].size();
-  ll bl = black[x];
-  if(color[par[x]] && x != 1)
-    bl++;
-  
-  ll to_add = neigh - bl;
-  
-  ans += to_add - 1;
-}
-
-void subtract(ll x){
-  color[x] = false;
-  black[par[x]]--;
-
-  ll neigh = G[x].size();
-  ll bl = black[x];
-  if(color[par[x]] && x != 1)
-    bl++;
-  
-  ll to_add = neigh - bl;
-
-  ans -= to_add - 1;
 }
 
 int main(){
   fastio;
   cin >> n;
   G.resize(n+1);
-  black.resize(n+1);
   par.resize(n+1);
-  color.resize(n+1);
-
-  for(ll i = 1; i <= n-1; i++){
-    ll a, b; cin >> a >> b;
+  cz.resize(n+1);
+  iscz.resize(n+1);
+  
+  for(int i = 1; i <= n-1; i++){
+    int a, b; cin >> a >> b;
     G[a].push_back(b);
     G[b].push_back(a);
   }
-  dfs(1, 0);
+  dfspar(1, 0);
+    
+  int t; cin >> t;
+  int sum = 1;
+  while(t--){
+    int _z; cin >> _z;
+    int z = abs(_z);
 
-  ans = 1;
+    if(_z > 0){
+      iscz[z] = true;
+      cz[par[z]]++;
+      sum += G[z].size() - (cz[z] + iscz[par[z]]) - 1;
+    } else{
+      iscz[z] = false;
+      cz[par[z]]--;
+      sum -= G[z].size() - (cz[z] + iscz[par[z]]) - 1;
+    }
 
-  ll m;
-  cin >> m;
-  while(m--){
-    ll z;
-    cin >> z;
-
-    if(z > 0)
-      add(z);
-    else
-      subtract(-z);
-
-    cout << ans << "\n";
+    cout << sum << "\n";
   }
 }
