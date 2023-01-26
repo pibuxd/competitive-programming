@@ -1,114 +1,99 @@
-// author: Piotr "pibuxd" Bublik (https://github.com/pibuxd)
-// 1. Create SCC
-// 2. Make DAG - each node is one SCC and Tarjan's algo
-//    will make topologial order automatically
 #include <bits/stdc++.h>
 using namespace std;
 #define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+#define all(x) x.begin(), x.end()
+#define int long long
 
-// 1:
-long long _n; // number of vertices in input
-long long m, id;
-vector<vector<long long>> G;
-vector<long long> low, ids, coins;
-vector<bool> on_st;
-stack<long long> st;
+int n, m, id;
+vector<vector<int>> G, Grev, Gsc;
+vector<int> sc, t, k, ksc;
+vector<bool> vis;
 
-// 2:
-long long n; // number of SCC in graph
-vector<vector<long long>> dag;
-vector<long long> dist, weight;
-
-void dfs(long long v){
-  st.push(v);
-  on_st[v] = true;
-  low[v] = ids[v] = id++;
-
-  for(long long x : G[v]){
-    if(!ids[x])
-      dfs(x);
-    if(on_st[x])
-      low[v] = min(low[v], low[x]);
-  }
-
-  if(ids[v] == low[v])
-    for(long long node = st.top();; node = st.top()){
-      st.pop();
-      on_st[node] = false;
-      low[node] = ids[v];
-      if(node == v)
-        break;
-    }
+void dfs1(int v){
+  vis[v] = true;
+  for(int x : G[v])
+    if(!vis[x])
+      dfs1(x);
+  t.push_back(v);
 }
 
-int main(){
+void dfs2(int v){
+  vis[v] = true;
+  sc[v] = id;
+  for(int x : Grev[v])
+    if(!vis[x])
+      dfs2(x);
+}
+
+int bfs(){ // I can because our Gsc is dag created from SCC, otherwise I would use dijkstra
+  queue<int> Q;
+  vector<int> dist(n+1), ind(n+1);
+  for(int i = 1; i <= n; i++)
+    for(int v : Gsc[i])
+      ind[v]++;
+
+  for(int i = 1; i <= n; i++)
+    if(ind[i] == 0){
+      Q.push(i);
+      dist[i] = ksc[i];
+    }
+
+  while(!Q.empty()){
+    int v = Q.front();
+    Q.pop();
+
+    for(int x : Gsc[v]){
+      dist[x] = max(dist[x], dist[v] + ksc[x]);
+      ind[x]--;
+      if(!ind[x])
+        Q.push(x);
+    }
+  }
+  return *max_element(all(dist));
+}
+
+signed main(){
   fastio;
-  cin >> _n >> m;
-  low = ids = coins = vector<long long>(_n+1);
-  G = vector<vector<long long>>(_n+1);
+  cin >> n >> m;
 
-  for(long long i = 1; i <= _n; i++)
-    cin >> coins[i];
-  for(long long i = 1; i <= m; i++){
-    long long a, b;
-    cin >> a >> b;
+  G.resize(n+1);
+  Gsc.resize(n+1);
+  Grev.resize(n+1);
+  sc.resize(n+1);
+  k.resize(n+1);
+  ksc.resize(n+1);
+  vis.assign(n+1, false);
+  
+  for(int i = 1; i <= n; i++)
+    cin >> k[i];
+
+  for(int i = 1; i <= m; i++){
+    int a, b; cin >> a >> b;
     G[a].push_back(b);
+    Grev[b].push_back(a);
   }
+  
+  for(int i = 1; i <= n; i++)
+    if(!vis[i])
+      dfs1(i);
 
+  reverse(all(t));
+  vis.assign(n+1, false);
   id = 0;
-  for(long long i = 1; i <= _n; i++)
-    if(!ids[i]){
-      on_st = vector<bool>(_n+1);
-      st = stack<long long>();
-      dfs(i);
+
+  for(int v : t)
+    if(!vis[v]){
+      id++;
+      dfs2(v);
     }
 
-  map<long long, long long> ans;
-  vector<long long> lows;
-  n = 0;
-  long long temp = 1;
-  for(long long i = 1; i <= _n; i++)
-    if(!ans[low[i]]){
-      ans[low[i]] = temp, temp++, n++;
-      lows.push_back(low[i]);
-  }
-  
-  weight = dist = vector<long long>(_n+1);
-  dag = vector<vector<long long>>(_n+1);
-  
-  for(long long i = 1; i <= _n; i++)
-    weight[low[i]] += coins[i];
-  
-  vector<vector<bool>> visited(_n+1, vector<bool>(_n+1));
-  for(long long i = 1; i <= _n; i++)
-    for(long long x : G[i])
-      if(!visited[low[i]][x] && low[x] != low[i]){
-        visited[low[i]][x] = true;
-        dag[low[i]].push_back(low[x]);
-      }
-  /*
-  cout << "\n";
-  for(long long l : lows) cout << l << " ";
-  cout << "\n\n";
-  for(long long l : lows){
-    cout << l << ": ";
-    for(long long x : dag[l])
-      cout << x << " ";
-    cout << "\n";
-  }
-  cout << "\n";
+  for(int i = 1; i <= n; i++)
+    for(int v : G[i])
+      if(sc[i] != sc[v])
+        Gsc[sc[i]].push_back(sc[v]);
 
-  for(long long l : lows)
-    cout << weight[l] << " ";
-  cout << "\n";
-  */
-  sort(lows.begin(), lows.end());
-  for(long long l : lows)
-    dist[l] = weight[l];
-  for(long long l : lows)
-    for(long long x : dag[l]){
-      dist[x] = max(dist[x], dist[l] + weight[x]);
-    }
+  for(int i = 1; i <= n; i++)
+    ksc[sc[i]] += k[i];
 
-  cout << *max_element(dist.begin(), dist.end());
+  cout << bfs() << "\n";
 }
